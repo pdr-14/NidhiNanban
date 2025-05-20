@@ -23,6 +23,17 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult ViewIntreset()
+    {
+        return View();
+    }
+    [HttpPost]
+    public IActionResult Getdata(ViewIntresetModel input)
+    {
+        Console.WriteLine("Input amount",input.amount);
+            return View(input);
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
