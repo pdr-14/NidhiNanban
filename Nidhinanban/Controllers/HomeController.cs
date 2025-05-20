@@ -27,9 +27,15 @@ public class HomeController : Controller
     {
         return View();
     }
+    
     [HttpPost]
-    public IActionResult Getdata(ViewIntresetModel input)
+    public IActionResult ViewIntreset(ViewIntresetModel input)
     {
+        if (input is null)
+        {
+            throw new ArgumentNullException(nameof(input));
+        }
+
         Console.WriteLine("Input amount",input.amount);
             return View(input);
     }
