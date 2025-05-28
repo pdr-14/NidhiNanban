@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\NidhiNanban\\Nidhinanban.csproj": {}
+    "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\Nidhinanban.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\NidhiNanban\\Nidhinanban.csproj": {
+    "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\Nidhinanban.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\NidhiNanban\\Nidhinanban.csproj",
+        "projectUniqueName": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\Nidhinanban.csproj",
         "projectName": "Nidhinanban",
-        "projectPath": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\NidhiNanban\\Nidhinanban.csproj",
+        "projectPath": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\Nidhinanban.csproj",
         "packagesPath": "C:\\Users\\ngoku\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\NidhiNanban\\obj\\",
+        "outputPath": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ngoku\\AppData\\Roaming\\NuGet\\NuGet.Config"

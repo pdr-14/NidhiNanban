@@ -22,7 +22,7 @@ public class HomeController : Controller
     {
         return View();
     }
-
+    
     public IActionResult ViewIntreset()
     {
         return View();
@@ -36,7 +36,12 @@ public class HomeController : Controller
             throw new ArgumentNullException(nameof(input));
         }
 
-        Console.WriteLine("Input amount",input.amount);
+        Console.WriteLine("Input amount"+input.amount.ToString());
+        decimal amount = input.amount;
+        decimal month = input.month;
+        decimal interestrate    = input.interestrate;
+        input.totalamount = Math.Ceiling((amount*interestrate*month)/100);
+        Console.WriteLine(""+input.totalamount);
             return View(input);
     }
 

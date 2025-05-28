@@ -1,5 +1,4 @@
-@model ViewIntresetModel
-
+@model  ViewIntresetModel
 @{
     ViewData["Title"]="Intrest";
 }
@@ -7,7 +6,7 @@
 <div>
     <div class="container-fluid">
         <form asp-action="ViewIntreset" method="post">
-        <div class=" text-center card  md-auto col-lg-5 col-md-6 col-sm-10  ">
+        <div class=" text-center card  mx-auto  col-lg-5 col-md-6 col-sm-10  ">
         <div class="card-header">
             <h2 class="title"> View Interest</h2>
         </div>
@@ -22,33 +21,33 @@
                  <div class="my-2">
                     <label class="my-2"> Intrest</label>
 
-                    <input type="number" asp-for="interestrate" class="form-control" name="intrest" id="intrest"
+                    <input type="number" asp-for=interestrate class="form-control" name="intrest" id="intrest"
                         placeholder="Enter The Intrest Rate" />
                 </div>
                  <div class="my-2">
                     <label class="my-2"> Number Of Years</label>
 
-                    <input type="number" asp-asp-for="year" class="form-control" name="year" id="year"
+                    <input type="number" asp-asp-for=year class="form-control" name="year" id="year"
                         placeholder="Enter The Total Number of Years" />
                 </div>
                  <div class="my-2">
                     <label class="my-2"> Months</label>
 
-                    <input type="text" asp-for="month" class="form-control" name="amount" id="amount"
+                    <input type="text" asp-for=month class="form-control" name="amount" id="amount"
                         placeholder="Enter The Total Number Of Months" />
                 </div>
 
                 <div class="my-2">
                     <label class="my-2"> Intrest Amount</label>
 
-                    <input type="number" asp-for="interestamount" class="form-control" name="intresetamount" id="intrestamount"
+                    <input type="number" asp-for=interestamount class="form-control" name="intresetamount" id="intrestamount"
                         placeholder="" readonly />
                 </div>
 
                 <div class="my-2">
                     <label class="my-2"> Total Amount</label>
 
-                    <input type="number" asp-for="totalamount" class="form-control" name="totalamount" id="totalamount"
+                    <input type="number" asp-for=totalamount class="form-control" name="totalamount" id="totalamount"
                         placeholder="" readonly />
                 </div>
                 <div class="my-2">
