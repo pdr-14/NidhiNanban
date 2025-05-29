@@ -12,6 +12,23 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
+.bg-card-primary{
+  background-color: #EFF6FF;
+  border: none;
+}
+.bg-card-success{
+  border: none;
+  background-color: #F0FDF4;
+}
+
+.bg-card-purple{
+  background-color: #FAF5FF;
+  border: none;
+}
+.text-purple{
+  color:#9333EA;
+}
+
 html {
   position: relative;
   min-height: 100%;

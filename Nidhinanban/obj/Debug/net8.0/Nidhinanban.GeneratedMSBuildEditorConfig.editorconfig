@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/ngoku/OneDrive/Desktop/Nidhi Nanban/Nidhinanban/Views/Customer/AddCustomer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQWRkQ3VzdG9tZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ngoku/OneDrive/Desktop/Nidhi Nanban/Nidhinanban/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -28,6 +32,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/ngoku/OneDrive/Desktop/Nidhi Nanban/Nidhinanban/Views/Home/ViewIntreset.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWV3SW50cmVzZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ngoku/OneDrive/Desktop/Nidhi Nanban/Nidhinanban/Views/Intrest/Intrestcalc.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50cmVzdFxJbnRyZXN0Y2FsYy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ngoku/OneDrive/Desktop/Nidhi Nanban/Nidhinanban/Views/Shared/Error.cshtml]

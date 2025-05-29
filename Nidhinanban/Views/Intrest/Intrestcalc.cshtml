@@ -1,0 +1,83 @@
+@model InterestModel
+
+@{
+    ViewData["Title"] = "Interest Calculator";
+}
+
+<div>
+    <a class="btn btn-outline-light text-black border border-10" asp-controller="Home" asp-action="Index">
+        <img width="25" height="25" src="https://img.icons8.com/plumpy/50/back.png" alt="back" /> Back To Dashboard
+    </a>
+
+    <div class="my-5">
+        <p class="h1">Interest Calculator</p>
+
+        <!-- Begin Form -->
+        <form asp-controller="Intrest" asp-action="Intrestcalc" method="post">
+            <div class="card col-8 my-5 mx-auto border border-10 shadow p-3">
+                <h3 class="mx-auto my-2">Interest Calculator</h3>
+
+                <div class="container my-4">
+                    <div class="row">
+                        <div class="col-6">
+                            <h6 class="mx-2">Principal Amount</h6>
+                            <input asp-for="principleamount" class="form-control mx-2" placeholder="Enter Principal Amount" />
+                        </div>
+                        <div class="col-6">
+                            <h6 class="mx-2">Annual Interest Rate (%)</h6>
+                            <input asp-for="interestrate" class="form-control mx-1" placeholder="Enter interest rate" />
+                        </div>
+                    </div>
+
+                    <div class="row mt-5">
+                        <div class="col-6">
+                            <h6 class="mx-2">Time Period (Months)</h6>
+                            <input asp-for="month" class="form-control mx-2" placeholder="Enter time in Months" />
+                        </div>
+                        <div class="col-6">
+                            <h6 class="mx-2">Time Period (Years)</h6>
+                            <input asp-for="year" class="form-control mx-1" placeholder="Enter time in years" />
+                        </div>
+                    </div>
+
+                    <div class="row col-10 mx-auto">
+                        <button type="submit" class="btn btn-dark my-3 mt-5">Calculate Interest</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- End Form -->
+
+        @if (Model.showdiv)
+        {
+            <div class="card rounded col-8 my-2 mx-auto border border-10  shadow p-3 d-flex justify-content-between">
+                <h3 class="mx-5 mt-3 pill">Interest Calculation Results</h3>
+
+                <div class="container my-4">
+                    <div class="row">
+                        <div class="col-3 mx-auto card bg-card-primary ">
+                            <div class="row my-2">
+                                <h4 class="text-center text-primary fw-bold">@Model.intrestamount</h4>
+                            </div>
+                            <p class="text-secondary text-center">Interest Amount</p>
+                        </div>
+
+                        <div class="col-3 mx-auto card bg-card-success">
+                            <div class="row my-2">
+                                <h4 class="text-success text-center fw-bold">@Model.principleamount</h4>
+                            </div>
+                            <p class="text-secondary text-center">Principal Amount</p>
+                        </div>
+
+                        <div class="col-3 mx-auto card bg-card-purple">
+                            <div class="row my-2">
+                                <h4 class="text-purple text-center fw-bold">@Model.totalamount</h4>
+                            </div>
+                            <p class="text-secondary text-center">Final Amount</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
