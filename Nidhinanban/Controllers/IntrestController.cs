@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Nidhinanban.Models;
+using Nidhinanban.Services;
 
 namespace Nidhinanban.Controllers
 {
@@ -9,10 +10,9 @@ namespace Nidhinanban.Controllers
 
     public class IntrestController : Controller
     {
-
-        public IntrestController()
-        {
-
+        private readonly InterestService _interestService;
+        public IntrestController(){
+            _interestService = new InterestService();
         }
         [HttpGet]
         public IActionResult Intrestcalc()
@@ -21,20 +21,25 @@ namespace Nidhinanban.Controllers
         }
 
         [HttpPost]
-        public IActionResult Intrestcalc(InterestModel Model)
+        public IActionResult Intrestcalc(InterestModel interestModel)
         {
             if(ModelState.IsValid)
             {
-                Model.showdiv=true;
-                float interest=Model.interestrate;
-                float principleamount=Model.principleamount;
-                float year=Model.year;
-                float interestamountnumber=(principleamount*interest*year)/100;
-                Model.intrestamount="₹ "+(interestamountnumber.ToString());
-                Model.totalamount="₹"+ (principleamount+interestamountnumber);
+                float principleamount=interestModel.principleamount;
+                float interestrate=interestModel.interestrate;
+                float year=interestModel.year;
+                float month=interestModel.month;
+                float week=interestModel.week;
+                string type=interestModel.type;
+                interestModel.showdiv=true;
+                var status=_interestService.calculateinterest(principleamount,interestrate,year,month,week,type);
+                interestModel.principleamountstring=status.principleamount;
+                interestModel.intrestamount=status.interestamount;
+                interestModel.totalamount=status.totalamount;
+
                 
             }
-            return View(Model);
+            return View(interestModel);
         }
     }
 }

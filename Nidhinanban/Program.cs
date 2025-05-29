@@ -1,7 +1,10 @@
+using Nidhinanban.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<InterestService>();
 
 var app = builder.Build();
 

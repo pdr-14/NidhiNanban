@@ -8,11 +8,14 @@ public class InterestModel{
     public float year{get; set;}
     public float month{get; set;}
 
+    public float week{get; set;}
     public  bool showdiv{get; set;}=false;
 
     public string? intrestamount{get; set;}=string.Empty;
     public string? totalamount{get; set;}
+    public string? principleamountstring{get; set;}=string.Empty;
 
+    public string type{get; set;}=string.Empty;
     public DataTable dt=new DataTable();
-    
+
 }

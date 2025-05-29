@@ -10,7 +10,7 @@
     </a>
 
     <div class="my-5">
-        <p class="h1">Interest Calculator</p>
+        
 
         <!-- Begin Form -->
         <form asp-controller="Intrest" asp-action="Intrestcalc" method="post">
@@ -21,22 +21,37 @@
                     <div class="row">
                         <div class="col-6">
                             <h6 class="mx-2">Principal Amount</h6>
-                            <input asp-for="principleamount" class="form-control mx-2" placeholder="Enter Principal Amount" />
+                            <input asp-for="principleamount" type="number" class="form-control mx-2" placeholder="Enter Principal Amount" />
                         </div>
                         <div class="col-6">
                             <h6 class="mx-2">Annual Interest Rate (%)</h6>
-                            <input asp-for="interestrate" class="form-control mx-1" placeholder="Enter interest rate" />
+                            <input asp-for="interestrate" type="number" class="form-control mx-1" placeholder="Enter interest rate" />
                         </div>
                     </div>
 
                     <div class="row mt-5">
                         <div class="col-6">
                             <h6 class="mx-2">Time Period (Months)</h6>
-                            <input asp-for="month" class="form-control mx-2" placeholder="Enter time in Months" />
+                            <input asp-for="month"  class="form-control mx-2" id="month" oninput="convert_month_to_year()" placeholder="Enter time in Months" />
                         </div>
                         <div class="col-6">
                             <h6 class="mx-2">Time Period (Years)</h6>
-                            <input asp-for="year" class="form-control mx-1" placeholder="Enter time in years" />
+                            <input asp-for="year"  class="form-control mx-1" id="year" oninput="convert_year_to_month()" placeholder="Enter time in years" />
+                        </div>
+                    </div>
+
+                    <div class="row mt-5">
+                        <div class="col-6">
+                            <h6 class="mx-2">Time Period (Weeks) </h6>
+                            <input id="weeks" asp-for="week"  placeholder="Enter time in weeks" class="form-control mx-1">
+                        </div>
+                        <div class="col-6">
+                            <h6 class="mx-2">Select type</h6>
+                           <select class="form-control" asp-for="type">
+                            <option value="week">Weeks</option>
+                            <option value="month">Months</option>
+                            <option value="year">Years</option>
+                           </select>
                         </div>
                     </div>
 
@@ -50,26 +65,27 @@
 
         @if (Model.showdiv)
         {
-            <div class="card rounded col-8 my-2 mx-auto border border-10  shadow p-3 d-flex justify-content-between">
+            
+            <div class="card rounded col-lg-8 my-2 mx-auto border border-10  shadow p-3 ">
                 <h3 class="mx-5 mt-3 pill">Interest Calculation Results</h3>
 
                 <div class="container my-4">
                     <div class="row">
-                        <div class="col-3 mx-auto card bg-card-primary ">
+                        <div class="col-sm-12 col-lg-3 mt-2 mx-auto card bg-card-primary ">
                             <div class="row my-2">
                                 <h4 class="text-center text-primary fw-bold">@Model.intrestamount</h4>
                             </div>
                             <p class="text-secondary text-center">Interest Amount</p>
                         </div>
 
-                        <div class="col-3 mx-auto card bg-card-success">
+                        <div class="col-sm-12 col-lg-3 mt-2 mx-auto card bg-card-success">
                             <div class="row my-2">
-                                <h4 class="text-success text-center fw-bold">@Model.principleamount</h4>
+                                <h4 class="text-success text-center fw-bold">@Model.principleamountstring</h4>
                             </div>
                             <p class="text-secondary text-center">Principal Amount</p>
                         </div>
 
-                        <div class="col-3 mx-auto card bg-card-purple">
+                        <div class="col-sm-12 col-lg-3 mt-2 mx-auto card bg-card-purple">
                             <div class="row my-2">
                                 <h4 class="text-purple text-center fw-bold">@Model.totalamount</h4>
                             </div>
@@ -81,3 +97,24 @@
         }
     </div>
 </div>
+<script>
+    var monthtextbox=document.getElementById("month");
+    var yeartextbox=document.getElementById("year");
+    var weektextbox=document.getElementById("weeks");
+
+    function convert_month_to_year()
+    {
+       var monthvalue=monthtextbox.value;
+       var yearvalue=monthvalue/12;
+       var weekvalue=Math.round(monthvalue*4.345);
+       weektextbox.value=weekvalue;
+       yeartextbox.value=yearvalue.toFixed(2);
+    }
+
+    function convert_year_to_month()
+    {
+        var yearvalue=yeartextbox.value;
+        var monthvalue=yearvalue*12;
+        monthtextbox.value=monthvalue;
+    }
+</script>
