@@ -1,0 +1,64 @@
+@{
+    ViewData["Title"]="Add Customers";
+}
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+<div>
+    <a class="btn btn-outline-light text-black border border-10" asp-controller="Home" asp-action="Index">
+        <img width="25" height="25" src="https://img.icons8.com/plumpy/50/back.png" alt="back" /> Back To Dashboard
+    </a>
+
+    <div class="my-5">
+        
+
+        <!-- Begin Form -->
+            <div class="card col-8 my-5 mx-auto border border-10 shadow p-3">
+                <h3 class="mx-auto my-2">Add Customer</h3>
+                <img class="mx-auto rounded-circle" width="200" height="200" src="https://img.icons8.com/color/240/circled-user-male-skin-type-7--v1.png" alt="circled-user-male-skin-type-7--v1" >
+                <div class="container my-4">
+                    <div class="row">
+                        <div class="col-6">
+                            <h6 class="mx-2">Customer Name</h6>
+                            <input  class="form-control mx-2" placeholder="Enter The Customer Name" />
+                        </div>
+                        <div class="col-6">
+                            <h6 class="mx-2">Phone No </h6>
+                            <input  class="form-control mx-2" placeholder="Enter The Phone No" />
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-6">
+                            <h6 class="mx-2">Address</h6>
+                            <input  class="form-control mx-2" placeholder="Enter The Address" />
+                        </div>
+                        <div class="col-6" id="my_camera">
+                            <h6 class="mx-2">Customer Aadhar Picture</h6>
+                            <input  class="form-control mx-2" placeholder="Enter The Customer aadhar Picture" onclick="opencamera()"/>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-6">
+                            <h6 class="mx-2">Customer House Picture</h6>
+                            <img  class="form-control mx-2" src="https://img.icons8.com/emoji/96/house-emoji.png" height="200" onclick="opencamera()" />
+                        </div>
+                        <div class="col-6">
+                            <h6 class="mx-2">Customer Pan Picture</h6>
+                            <input  class="form-control mx-2" placeholder="Enter The Pan Picture" />
+                        </div>
+                    </div><br>
+                </div>
+
+               
+  <script>
+    Webcam.set({
+      width: 320,
+      height: 240,
+      image_format: 'jpeg',
+      jpeg_quality: 90
+    });
+    function opencamera()
+    {
+        Webcam.attach('#my_camera');
+    }
+    
+    
+  </script>
