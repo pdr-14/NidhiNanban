@@ -2,8 +2,11 @@
 
 @{
     ViewData["Title"] = "Interest Calculator";
+    var weekjson=Json.Serialize(Model.dt);
 }
 
+<link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+<script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
 <div>
     <a class="btn btn-outline-light text-black border border-10" asp-controller="Home" asp-action="Index">
         <img width="25" height="25" src="https://img.icons8.com/plumpy/50/back.png" alt="back" /> Back To Dashboard
@@ -94,6 +97,10 @@
                     </div>
                 </div>
             </div>
+
+            <div class="mt-5 card rounded col-lg-8  mx-auto border border-10  shadow p-3 ">
+                <div id="weektable"></div>
+            </div>
         }
     </div>
 </div>
@@ -117,4 +124,12 @@
         var monthvalue=yearvalue*12;
         monthtextbox.value=monthvalue;
     }
+    
+    const data = @Html.Raw(weekjson);
+    new gridjs.Grid({
+        columns: ["Week"],
+        data: data.map(item => [item]), // Wrap each string in an array to create rows
+        pagination: true,
+        search: true
+    }).render(document.getElementById("weektable"));
 </script>
