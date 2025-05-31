@@ -21,10 +21,11 @@ namespace Nidhinanban.Controllers
         }
 
         [HttpPost]
-        public IActionResult Intrestcalc(InterestModel interestModel)
+        public async Task<IActionResult> Intrestcalc(InterestModel interestModel)
         {
             if(ModelState.IsValid)
             {
+                LogicClasses.Intrest intrest=new LogicClasses.Intrest();
                 float principleamount=interestModel.principleamount;
                 float interestrate=interestModel.interestrate;
                 float year=interestModel.year;
@@ -32,11 +33,11 @@ namespace Nidhinanban.Controllers
                 float week=interestModel.week;
                 string type=interestModel.type;
                 interestModel.showdiv=true;
-                var status=_interestService.calculateinterest(principleamount,interestrate,year,month,week,type);
+                var status= await _interestService.calculateinterest(principleamount,interestrate,year,month,week,type);
                 interestModel.principleamountstring=status.principleamount;
                 interestModel.intrestamount=status.interestamount;
                 interestModel.totalamount=status.totalamount;
-
+                interestModel.dt=await intrest.getWeekbasedInterestData();
                 
             }
             return View(interestModel);

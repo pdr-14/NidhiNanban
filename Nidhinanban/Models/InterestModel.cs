@@ -16,6 +16,6 @@ public class InterestModel{
     public string? principleamountstring{get; set;}=string.Empty;
 
     public string type{get; set;}=string.Empty;
-    public DataTable dt=new DataTable();
+    public List<string> dt=new List<string>();
 
 }
