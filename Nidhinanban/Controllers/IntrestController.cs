@@ -37,10 +37,10 @@ namespace Nidhinanban.Controllers
                 interestModel.principleamountstring=status.principleamount;
                 interestModel.intrestamount=status.interestamount;
                 interestModel.totalamount=status.totalamount;
-                interestModel.dt=await intrest.getWeekbasedInterestData();
+                interestModel.dt=await intrest.getWeekbasedInterestData(week,month,interestrate.ToString(),principleamount.ToString(),type);
                 
             }
-            return View(interestModel);
+            return PartialView("_Intresthidden",interestModel);
         }
     }
 }

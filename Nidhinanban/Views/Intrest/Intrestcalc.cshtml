@@ -2,59 +2,65 @@
 
 @{
     ViewData["Title"] = "Interest Calculator";
-    var weekjson=Json.Serialize(Model.dt);
 }
 
-<link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
-<script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+
+
+
 <div>
     <a class="btn btn-outline-light text-black border border-10" asp-controller="Home" asp-action="Index">
         <img width="25" height="25" src="https://img.icons8.com/plumpy/50/back.png" alt="back" /> Back To Dashboard
     </a>
 
     <div class="my-5">
-        
+
 
         <!-- Begin Form -->
-        <form asp-controller="Intrest" asp-action="Intrestcalc" method="post">
-            <div class="card col-8 my-5 mx-auto border border-10 shadow p-3">
+        <form asp-controller="Intrest" asp-action="Intrestcalc" id="insertform" method="post"
+            hx-post="/Intrest/Intrestcalc" hx-target="#hiddencontainer" hx-swap="innerHTML">
+            <div class="card col-10 my-5 mx-auto border border-10 shadow p-3">
                 <h3 class="mx-auto my-2">Interest Calculator</h3>
 
                 <div class="container my-4">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
                             <h6 class="mx-2">Principal Amount</h6>
-                            <input asp-for="principleamount" type="number" class="form-control mx-2" placeholder="Enter Principal Amount" />
+                            <input asp-for="principleamount" type="number" id="pricipleamount" class="form-control mx-2"
+                                placeholder="Enter Principal Amount" />
                         </div>
-                        <div class="col-6">
+                        <div class="col-sm-12 col-md-6  col-lg-6">
                             <h6 class="mx-2">Annual Interest Rate (%)</h6>
-                            <input asp-for="interestrate" type="number" class="form-control mx-1" placeholder="Enter interest rate" />
+                            <input asp-for="interestrate" type="number" id="interestrate" class="form-control mx-1"
+                                placeholder="Enter interest rate" />
                         </div>
                     </div>
 
                     <div class="row mt-5">
-                        <div class="col-6">
+                        <div class="col-sm-12 col-md-6  col-lg-6">
                             <h6 class="mx-2">Time Period (Months)</h6>
-                            <input asp-for="month"  class="form-control mx-2" id="month" oninput="convert_month_to_year()" placeholder="Enter time in Months" />
+                            <input asp-for="month" class="form-control mx-2" id="month"
+                                oninput="convert_month_to_year()" placeholder="Enter time in Months" />
                         </div>
-                        <div class="col-6">
+                        <div class="col-sm-12 col-md-6  col-lg-6">
                             <h6 class="mx-2">Time Period (Years)</h6>
-                            <input asp-for="year"  class="form-control mx-1" id="year" oninput="convert_year_to_month()" placeholder="Enter time in years" />
+                            <input asp-for="year" class="form-control mx-1" id="year" oninput="convert_year_to_month()"
+                                placeholder="Enter time in years" />
                         </div>
                     </div>
 
                     <div class="row mt-5">
-                        <div class="col-6">
+                        <div class="col-sm-12 col-md-6  col-lg-6">
                             <h6 class="mx-2">Time Period (Weeks) </h6>
-                            <input id="weeks" asp-for="week"  placeholder="Enter time in weeks" class="form-control mx-1">
+                            <input id="weeks" asp-for="week" placeholder="Enter time in weeks"
+                                class="form-control mx-1">
                         </div>
-                        <div class="col-6">
+                        <div class="col-sm-12 col-md-6  col-lg-6">
                             <h6 class="mx-2">Select type</h6>
-                           <select class="form-control" asp-for="type">
-                            <option value="week">Weeks</option>
-                            <option value="month">Months</option>
-                            <option value="year">Years</option>
-                           </select>
+                            <select class="form-control" asp-for="type">
+                                <option value="week">Weeks</option>
+                                <option value="month">Months</option>
+                                <option value="year">Years</option>
+                            </select>
                         </div>
                     </div>
 
@@ -65,71 +71,70 @@
             </div>
         </form>
         <!-- End Form -->
+        <div id="hiddencontainer"></div>
 
-        @if (Model.showdiv)
-        {
-            
-            <div class="card rounded col-lg-8 my-2 mx-auto border border-10  shadow p-3 ">
-                <h3 class="mx-5 mt-3 pill">Interest Calculation Results</h3>
 
-                <div class="container my-4">
-                    <div class="row">
-                        <div class="col-sm-12 col-lg-3 mt-2 mx-auto card bg-card-primary ">
-                            <div class="row my-2">
-                                <h4 class="text-center text-primary fw-bold">@Model.intrestamount</h4>
-                            </div>
-                            <p class="text-secondary text-center">Interest Amount</p>
-                        </div>
-
-                        <div class="col-sm-12 col-lg-3 mt-2 mx-auto card bg-card-success">
-                            <div class="row my-2">
-                                <h4 class="text-success text-center fw-bold">@Model.principleamountstring</h4>
-                            </div>
-                            <p class="text-secondary text-center">Principal Amount</p>
-                        </div>
-
-                        <div class="col-sm-12 col-lg-3 mt-2 mx-auto card bg-card-purple">
-                            <div class="row my-2">
-                                <h4 class="text-purple text-center fw-bold">@Model.totalamount</h4>
-                            </div>
-                            <p class="text-secondary text-center">Final Amount</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-5 card rounded col-lg-8  mx-auto border border-10  shadow p-3 ">
-                <div id="weektable"></div>
-            </div>
-        }
     </div>
 </div>
 <script>
-    var monthtextbox=document.getElementById("month");
-    var yeartextbox=document.getElementById("year");
-    var weektextbox=document.getElementById("weeks");
 
-    function convert_month_to_year()
-    {
-       var monthvalue=monthtextbox.value;
-       var yearvalue=monthvalue/12;
-       var weekvalue=Math.round(monthvalue*4.345);
-       weektextbox.value=weekvalue;
-       yeartextbox.value=yearvalue.toFixed(2);
+    var pricipleamount = document.getElementById("pricipleamount");
+    var monthtextbox = document.getElementById("month");
+    var yeartextbox = document.getElementById("year");
+    var weektextbox = document.getElementById("weeks");
+
+
+    // Approximate days in each month (non-leap year)
+    const monthToDays = {
+        1: 31,
+        2: 28,  // change to 29 if leap year
+        3: 31,
+        4: 30,
+        5: 31,
+        6: 30,
+        7: 31,
+        8: 31,
+        9: 30,
+        10: 31,
+        11: 30,
+        12: 31
+    };
+
+
+    function convert_month_to_year() {
+        var monthvalue = parseInt(monthtextbox.value);
+        if (isNaN(monthvalue) || monthvalue < 1 || monthvalue > 12) {
+            //alert("Please enter a valid month number (1 to 12).");
+            monthtextbox.style = 'border-color:red';
+            return;
+        }
+        monthtextbox.style = 'border-color:none';
+
+        var totalDays = 0;
+        for (let i = 1; i <= monthvalue; i++) {
+            totalDays += monthToDays[i];
+        }
+
+        var weeks = totalDays / 7;
+
+        yeartextbox.value = (monthvalue / 12).toFixed(2);
+        weektextbox.value = weeks.toFixed(2);
     }
 
-    function convert_year_to_month()
-    {
-        var yearvalue=yeartextbox.value;
-        var monthvalue=yearvalue*12;
-        monthtextbox.value=monthvalue;
+    function convert_year_to_month() {
+        var yearvalue = parseFloat(yeartextbox.value);
+        if (isNaN(yearvalue)) {
+            alert("Please enter a valid number for years.");
+            return;
+        }
+
+        var monthvalue = yearvalue * 12;
+        monthtextbox.value = Math.round(monthvalue);
+
+
+
     }
     
-    const data = @Html.Raw(weekjson);
-    new gridjs.Grid({
-        columns: ["Week"],
-        data: data.map(item => [item]), // Wrap each string in an array to create rows
-        pagination: true,
-        search: true
-    }).render(document.getElementById("weektable"));
+
+
 </script>

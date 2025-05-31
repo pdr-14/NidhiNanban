@@ -1,0 +1,69 @@
+@model Nidhinanban.Models.InterestModel
+
+
+
+@if (Model.showdiv)
+{
+    
+    <p>@Model.dt.Count()</p>
+
+    <div class="card rounded col-lg-10 my-2 mx-auto border border-10  shadow p-3">
+        <h3 class="mx-5 mt-3 pill">Interest Calculation Results</h3>
+
+        <div class="container my-4">
+            <div class="row">
+                <div class="col-sm-12 col-lg-3 mt-2 mx-auto card bg-card-primary">
+                    <div class="row my-2">
+                        <h4 class="text-center text-primary fw-bold">@Model.intrestamount</h4>
+                    </div>
+                    <p class="text-secondary text-center">Interest Amount</p>
+                </div>
+
+                <div class="col-sm-12 col-lg-3 mt-2 mx-auto card bg-card-success">
+                    <div class="row my-2">
+                        <h4 class="text-success text-center fw-bold">@Model.principleamountstring</h4>
+                    </div>
+                    <p class="text-secondary text-center">Principal Amount</p>
+                </div>
+
+                <div class="col-sm-12 col-lg-3 mt-2 mx-auto card bg-card-purple">
+                    <div class="row my-2">
+                        <h4 class="text-purple text-center fw-bold">@Model.totalamount</h4>
+                    </div>
+                    <p class="text-secondary text-center">Final Amount</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 card rounded col-lg-10 mx-auto border border-10 shadow p-3">
+        <table id="interestTable" class="display table table-hover">
+            <thead>
+                <tr>
+                    <th>Sno</th>
+                    <th>Week</th>
+                    <th>Interest Rate</th>
+                    <th>Interest Amount</th>
+                    <th>Payable Amount</th>
+                    <th>Total Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.dt.Count; i++)
+                {
+                    var cols = Model.dt[i].Split('|');
+                    <tr>
+                        @foreach (var col in cols)
+                        {
+                            <td>@col</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <script>
+       
+       $('dcoument').ready(function(){$('#interestTable').DataTable();})
+    </script>
+}
