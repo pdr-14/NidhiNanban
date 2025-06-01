@@ -1,64 +1,217 @@
 @{
-    ViewData["Title"]="Add Customers";
+    ViewData["Title"] = "Add Customers";
 }
- <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
-<div>
-    <a class="btn btn-outline-light text-black border border-10" asp-controller="Home" asp-action="Index">
-        <img width="25" height="25" src="https://img.icons8.com/plumpy/50/back.png" alt="back" /> Back To Dashboard
-    </a>
-
-    <div class="my-5">
-        
-
-        <!-- Begin Form -->
-            <div class="card col-8 my-5 mx-auto border border-10 shadow p-3">
-                <h3 class="mx-auto my-2">Add Customer</h3>
-                <img class="mx-auto rounded-circle" width="200" height="200" src="https://img.icons8.com/color/240/circled-user-male-skin-type-7--v1.png" alt="circled-user-male-skin-type-7--v1" >
-                <div class="container my-4">
-                    <div class="row">
-                        <div class="col-6">
-                            <h6 class="mx-2">Customer Name</h6>
-                            <input  class="form-control mx-2" placeholder="Enter The Customer Name" />
-                        </div>
-                        <div class="col-6">
-                            <h6 class="mx-2">Phone No </h6>
-                            <input  class="form-control mx-2" placeholder="Enter The Phone No" />
-                        </div>
-                    </div><br>
-                    <div class="row">
-                        <div class="col-6">
-                            <h6 class="mx-2">Address</h6>
-                            <input  class="form-control mx-2" placeholder="Enter The Address" />
-                        </div>
-                        <div class="col-6" id="my_camera">
-                            <h6 class="mx-2">Customer Aadhar Picture</h6>
-                            <input  class="form-control mx-2" placeholder="Enter The Customer aadhar Picture" onclick="opencamera()"/>
-                        </div>
-                    </div><br>
-                    <div class="row">
-                        <div class="col-6">
-                            <h6 class="mx-2">Customer House Picture</h6>
-                            <img  class="form-control mx-2" src="https://img.icons8.com/emoji/96/house-emoji.png" height="200" onclick="opencamera()" />
-                        </div>
-                        <div class="col-6">
-                            <h6 class="mx-2">Customer Pan Picture</h6>
-                            <input  class="form-control mx-2" placeholder="Enter The Pan Picture" />
-                        </div>
-                    </div><br>
-                </div>
-
-               
-  <script>
-    Webcam.set({
-      width: 320,
-      height: 240,
-      image_format: 'jpeg',
-      jpeg_quality: 90
-    });
-    function opencamera()
-    {
-        Webcam.attach('#my_camera');
+<script src="https://cdn.jsdelivr.net/npm/webcam-easy/dist/webcam-easy.min.js"></script>
+<style>
+    .card {
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
-    
-    
-  </script>
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        cursor: pointer;
+        border: 3px solid #007BFF;
+        display: block;
+        margin: 10px auto;
+    }
+
+    .doc-image {
+        width: 100%;
+        max-width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border: 2px solid #007BFF;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .form-group {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+        text-align: left;
+    }
+
+    input[type="text"], textarea {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .form-actions {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .form-actions button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .btn-save:hover { background-color: #28a745; color:white; transition: background-color 0.3s; }
+    .btn-clear:hover { background-color: #dc3545; color: white; transition: background-color 0.3s; }
+    .btn-next:hover { background-color: #007bff; color: white; transition: background-color 0.3s; }
+    .btn-save, .btn-clear, .btn-next {
+        background-color: lightgray;
+        color: black;
+    }
+
+    #my_camera {
+        display: none;
+        margin: 10px auto;
+        text-align: center;
+    }
+
+    .webcam-buttons {
+        text-align: center;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="card mx-auto">
+    <video id="webcam" autoplay playsinline width="320" height="240"></video>
+  <canvas id="canvas" style="display:none;"></canvas>
+
+    <!-- Profile Image -->
+    <div class="form-group">
+        <label>Profile Picture</label>
+        <img id="profilePic" class="profile-image" src="../img/profile.jpeg" onclick="webcam.start()" />
+    </div>
+
+    <!-- Name -->
+    <div class="form-group">
+        <label>Customer Name</label>
+        <input type="text" id="customerName" placeholder="Enter customer name" onblur="setImagesBasedOnName()" />
+    </div>
+
+    <!-- Phone -->
+    <div class="form-group">
+        <label>Phone Number</label>
+        <input type="text" placeholder="Enter phone number" />
+    </div>
+
+    <!-- Address -->
+    <div class="form-group">
+        <label>Address</label>
+        <textarea rows="3" placeholder="Enter address"></textarea>
+    </div>
+
+    <!-- House Picture -->
+    <div class="form-group">
+        <label>House Picture</label>
+        <img id="housePic" class="doc-image" src="../img/house.jpg" onclick="openCamera('housePic')" />
+    </div>
+
+    <!-- PAN Picture -->
+    <div class="form-group">
+        <label>PAN Picture</label>
+        <img id="panPic" class="doc-image" src="../img/pan.png" onclick="openCamera('panPic')" />
+    </div>
+
+    <!-- Aadhaar Picture -->
+    <div class="form-group">
+        <label>Aadhaar Picture</label>
+        <img id="aadhaarPic" class="doc-image" src="../img/aadhar.jpg" onclick="openCamera('aadhaarPic')" />
+    </div>
+
+    <!-- Webcam Capture Container -->
+    <div id="my_camera">
+        <div id="camera_feed"></div>
+        <div class="webcam-buttons">
+            <button onclick="takePhoto()">Capture</button>
+            <button onclick="closeCamera()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="form-actions">
+        <button type="button" class="btn-save">Save</button>
+        <button type="button" class="btn-clear" onclick="clearForm()">Clear</button>
+        <button type="button" class="btn-next">Next</button>
+    </div>
+</div>
+
+<script>
+const webcamElement = document.getElementById('webcam');
+    const canvasElement = document.getElementById('canvas');
+    const photoElement = document.getElementById('photo');
+
+    const webcam = new Webcam(webcamElement, 'user', canvasElement);
+
+    function takePhoto() {
+      let picture = webcam.snap();
+      photoElement.src = picture;
+    }
+
+
+    let currentTargetId = "";
+
+    function openCamera(targetId) {
+        currentTargetId = targetId;
+        document.getElementById("my_camera").style.display = "block";
+        Webcam.set({
+            width: 300,
+            height: 240,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
+        Webcam.attach('#camera_feed');
+    }
+
+    function takeSnapshot() {
+        Webcam.snap(function (data_uri) {
+            document.getElementById(currentTargetId).src = data_uri;
+            closeCamera();
+        });
+    }
+
+    function closeCamera() {
+        Webcam.reset();
+        document.getElementById("my_camera").style.display = "none";
+    }
+
+    function clearForm() {
+        const placeholders = {
+            profilePic: "https://via.placeholder.com/120",
+            housePic: "https://via.placeholder.com/400x150?text=House+Picture",
+            panPic: "https://via.placeholder.com/400x150?text=PAN+Picture",
+            aadhaarPic: "https://via.placeholder.com/400x150?text=Aadhaar+Picture"
+        };
+
+        for (let id in placeholders) {
+            document.getElementById(id).src = placeholders[id];
+        }
+
+        document.querySelectorAll('input[type="text"], textarea').forEach(e => e.value = '');
+    }
+
+    function setImagesBasedOnName() {
+        const nameInput = document.getElementById("customerName").value.trim().toLowerCase().replace(/\s+/g, '_');
+
+        if (nameInput === "") return;
+
+        document.getElementById("profilePic").src = `/images/${nameInput}_profile.jpg`;
+        document.getElementById("housePic").src = `/images/${nameInput}_house.jpg`;
+        document.getElementById("panPic").src = `/images/${nameInput}_pan.jpg`;
+        document.getElementById("aadhaarPic").src = `/images/${nameInput}_aadhaar.jpg`;
+    }
+</script>

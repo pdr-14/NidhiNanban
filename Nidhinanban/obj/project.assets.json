@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\ngoku\\.nuget\\packages\\": {}
+    "C:\\Users\\THANGAPANDI R\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\Nidhinanban.csproj",
+      "projectUniqueName": "E:\\Nidhi Nanban\\NidhiNanban\\Nidhinanban\\Nidhinanban.csproj",
       "projectName": "Nidhinanban",
-      "projectPath": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\Nidhinanban.csproj",
-      "packagesPath": "C:\\Users\\ngoku\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\obj\\",
+      "projectPath": "E:\\Nidhi Nanban\\NidhiNanban\\Nidhinanban\\Nidhinanban.csproj",
+      "packagesPath": "C:\\Users\\THANGAPANDI R\\.nuget\\packages\\",
+      "outputPath": "E:\\Nidhi Nanban\\NidhiNanban\\Nidhinanban\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ngoku\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\THANGAPANDI R\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"

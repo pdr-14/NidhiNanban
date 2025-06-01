@@ -8,24 +8,27 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
-.card  {
+.card {
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   background-color: rgba(255, 255, 255, 0.75);
   border-radius: 12px;
   border: 1px solid rgba(209, 213, 219, 0.3);
 }
-.navbar{
+.navbar {
   backdrop-filter: blur(25px) saturate(200%);
   -webkit-backdrop-filter: blur(25px) saturate(200%);
   background-color: rgba(154, 155, 157, 0.54);
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.125);  
+  border: 1px solid rgba(255, 255, 255, 0.125);
 }
-
 
 .card-inner {
   width: 100%;
@@ -48,32 +51,28 @@ html {
 }
 
 .card-front {
-  
   transform: rotateY(0deg);
 }
 
 .card-back {
-   transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
-
-
-
-.bg-card-primary{
-  background-color: #EFF6FF;
+.bg-card-primary {
+  background-color: #eff6ff;
   border: none;
 }
-.bg-card-success{
+.bg-card-success {
   border: none;
-  background-color: #F0FDF4;
+  background-color: #f0fdf4;
 }
 
-.bg-card-purple{
-  background-color: #FAF5FF;
+.bg-card-purple {
+  background-color: #faf5ff;
   border: none;
 }
-.text-purple{
-  color:#9333EA;
+.text-purple {
+  color: #9333ea;
 }
 
 html {
@@ -85,15 +84,15 @@ body {
   margin-bottom: 60px;
 }
 
-.btn-outline-purple:hover,:focus{
-  background-color: #9333EA;
+.btn-outline-purple:hover {
+  background-color: #9333ea;
   color: #ffffff;
-  
+
   transition: ease-in-out 100ms;
 }
 
-.bnt-gradient-primary:hover{
-  background-color: #28AEE8;
+.bnt-gradient-primary:hover {
+  background-color: #28aee8;
   color: whitesmoke;
   transition: ease-in-out 1s;
 }
