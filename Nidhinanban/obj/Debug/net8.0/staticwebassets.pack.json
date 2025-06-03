@@ -13,8 +13,20 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\img\\Pan-Card.png",
+      "PackagePath": "staticwebassets\\img\\Pan-Card.png"
+    },
+    {
+      "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\img\\aadhaarpics.png",
+      "PackagePath": "staticwebassets\\img\\aadhaarpics.png"
+    },
+    {
       "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\img\\bg.png",
       "PackagePath": "staticwebassets\\img\\bg.png"
+    },
+    {
+      "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\img\\house.png",
+      "PackagePath": "staticwebassets\\img\\house.png"
     },
     {
       "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\js\\site.js",

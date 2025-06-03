@@ -1,13 +1,9 @@
 @model Nidhinanban.Models.InterestModel
 
-
-
 @if (Model.showdiv)
 {
     
-    <p>@Model.dt.Count()</p>
-
-    <div class="card rounded col-lg-10 my-2 mx-auto border border-10  shadow p-3">
+    <div class="card col-lg-10 my-2 mx-auto  border border-10 shadow p-3">
         <h3 class="mx-5 mt-3 pill">Interest Calculation Results</h3>
 
         <div class="container my-4">
@@ -36,7 +32,18 @@
         </div>
     </div>
 
-    <div class="mt-5 card rounded col-lg-10 mx-auto border border-10 shadow p-3">
+    <div class="mt-5 card rounded col-lg-10 mx-auto border border-10 shadow p-3 table-responsive">
+        <div class="d-flex justify-content-end flex-grow-1">
+            
+                <form asp-controller="Intrest" asp-action="ExportExcel" method="get">
+                            <button type="submit" class="btn" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Export To Excel">
+                                <img width="45" height="45" src="https://img.icons8.com/fluency/144/microsoft-excel-2019.png" alt="Export to Excel" />
+                            </button>
+                </form>
+
+        </div>
+
+
         <table id="interestTable" class="display table table-hover">
             <thead>
                 <tr>
@@ -49,21 +56,23 @@
                 </tr>
             </thead>
             <tbody>
-                @for (int i = 0; i < Model.dt.Count; i++)
+                @foreach(System.Data.DataRow row in Model.dt.Rows)
                 {
-                    var cols = Model.dt[i].Split('|');
                     <tr>
-                        @foreach (var col in cols)
+                        @foreach(var items in row.ItemArray)
                         {
-                            <td>@col</td>
+                            <td>@items</td>
                         }
                     </tr>
                 }
+                
             </tbody>
         </table>
     </div>
     <script>
        
        $('dcoument').ready(function(){$('#interestTable').DataTable();})
+       const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     </script>
 }

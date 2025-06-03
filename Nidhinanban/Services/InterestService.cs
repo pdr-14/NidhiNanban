@@ -21,8 +21,9 @@ namespace Nidhinanban.Services
                 }
                 else if (type.ToLower() == "month")
                 {
-                    interestamounts = (float)Math.Round(principleamount * interest * month / (100 * 12), 2);
-                    totalamounts = (float)Math.Round(principleamounts + interestamounts, 2);
+                    float singlemonthamount=principleamount/month;
+                    interestamounts = (float)Math.Round((singlemonthamount * interest  / 100), 2);
+                    totalamounts = (float)Math.Round((singlemonthamount + interestamounts)*month, 2);
                 }
                 else if (type.ToLower() == "year")
                 {
@@ -30,7 +31,7 @@ namespace Nidhinanban.Services
                     totalamounts = (float)Math.Round(principleamounts + interestamounts, 2);
                 }
             });
-            return ("₹" + principleamounts, "₹" + interestamounts, "₹" + totalamounts, datas);
+            return ("₹" + principleamounts, "₹" + interestamounts*month, "₹" + totalamounts, datas);
         }
     }
 }

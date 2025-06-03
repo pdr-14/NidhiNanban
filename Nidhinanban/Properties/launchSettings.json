@@ -13,7 +13,7 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "http://127.0.0.1:5209;http://0.0.0.0:5000",
+      "applicationUrl": "http://localhost:5209",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -22,10 +22,11 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7066;http://localhost:5209",
+      "applicationUrl": "https://0.0.0.0:7066;http://0.0.0.0.:5209",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "sslPort": 7066
     },
     "IIS Express": {
       "commandName": "IISExpress",

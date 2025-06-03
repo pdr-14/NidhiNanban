@@ -85,15 +85,20 @@ body {
   margin-bottom: 60px;
 }
 
-.btn-outline-purple:hover,:focus{
+.btn-outline-purple:hover{
   background-color: #9333EA;
   color: #ffffff;
   
+  transition: ease-in-out 100ms;
+}
+.btn-outline-purple:focus{
+  background-color: #9333EA;
+  color: #ffffff;
   transition: ease-in-out 100ms;
 }
 
 .bnt-gradient-primary:hover{
   background-color: #28AEE8;
   color: whitesmoke;
-  transition: ease-in-out 1s;
+  transition: ease-in-out 100ms;
 }

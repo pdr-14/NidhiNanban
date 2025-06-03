@@ -29,3 +29,17 @@ C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\obj\Debug\net8.0\refint
 C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\obj\Debug\net8.0\Nidhinanban.pdb
 C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\obj\Debug\net8.0\Nidhinanban.genruntimeconfig.cache
 C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\obj\Debug\net8.0\ref\Nidhinanban.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\MySqlConnector.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\obj\Debug\net8.0\Nidhinanban.csproj.AssemblyReference.cache
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\obj\Debug\net8.0\Nidhinan.9CCF5213.Up2Date
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\ClosedXML.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\ClosedXML.Parser.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\DocumentFormat.OpenXml.Framework.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\ExcelNumberFormat.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\RBush.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\SixLabors.Fonts.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\System.IO.Packaging.dll

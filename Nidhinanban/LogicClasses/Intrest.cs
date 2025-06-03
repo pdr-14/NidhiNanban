@@ -9,7 +9,7 @@ namespace Nidhinanban.LogicClasses
 {
     public class Intrest
     {
-        public async Task<List<string>> getWeekbasedInterestData(float no_of_weeks, float no_of_months, string interestrate, string principleamount, string type)
+        public async Task<DataTable> getWeekbasedInterestData(float no_of_weeks, float no_of_months, string interestrate, string principleamount, string type)
         {
             List<string> weeksdatas = new List<string>();
             DateTime startingdate = DateTime.Now;
@@ -81,18 +81,38 @@ namespace Nidhinanban.LogicClasses
 
                     float monthlypayamount = principleamounts / numberofmonths;
 
-                    float monthlyintrestamount = monthlypayamount * (interestrates / 100);
+                    float monthlyintrestamount = monthlypayamount * interestrates / 100;
 
                     totalamount = monthlypayamount + monthlyintrestamount;
                     for (int i = 1; i <= numberofmonths; i++)
                     {
                         DateTime enddate = startingdate.AddMonths(i);
                         weeksdatas.Add(i + "|" + enddate.ToString("dd-MM-yyyy") + "|" + interestrate + "|" + monthlyintrestamount + "|" + monthlypayamount + "|" + totalamount);
-                        Console.WriteLine(enddate.ToString(""));
                     }
                 });
             }
-            return weeksdatas;
+            DataTable table = new DataTable();
+    table.Columns.Add("WeekOrMonth", typeof(int));
+    table.Columns.Add("Date", typeof(string));
+    table.Columns.Add("InterestRate", typeof(float));
+    table.Columns.Add("InterestAmount", typeof(float));
+    table.Columns.Add("PrincipalAmount", typeof(float));
+    table.Columns.Add("TotalPayment", typeof(float));
+
+    foreach (string row in weeksdatas)
+    {
+        string[] parts = row.Split('|');
+        table.Rows.Add(
+            int.Parse(parts[0]),
+            parts[1],
+            float.Parse(parts[2]),
+            float.Parse(parts[3]),
+            float.Parse(parts[4]),
+            float.Parse(parts[5])
+        );
+    }
+
+    return table;
         }
     }
 }
