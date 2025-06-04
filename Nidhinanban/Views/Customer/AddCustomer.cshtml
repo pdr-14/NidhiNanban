@@ -93,25 +93,64 @@
 </style>
 
 <div>
-     <div class="mx-auto">
-                 <div id="cam"></div>
-                 <button onclick="opencam()">Open Camera</button>
-<button onclick="changecam()">Switch Camera</button>
-<button onclick="closecam()">Close Camera</button>
-                 </div>
-    <form>
-        <a class="btn btn-outline-light text-black border border-10" asp-controller="Home" asp-action="Index">
+
+<a class="btn btn-outline-light text-black border border-10" asp-controller="Home" asp-action="Index">
             <img width="25" height="25" src="https://img.icons8.com/plumpy/50/back.png" alt="back" /> Back To Dashboard
         </a>
-        
+
+
+    <div id="Cameraholder" class="card mx-auto col-5 mt-5" style="display:none;">
+  
+ <div class="card-header d-flex justify-content-between align-items-center">
+    <h3>Camera</h3>
+    <button type="button" class="btn-close" aria-label="Close" onclick="closeContainer('Cameraholder')"></button>
+</div>
+
+  <div class="card-body">
+    <div id="camera-container" class="mb-3 mx-auto"></div>
+  </div>
+
+  <div class="card-footer ">
+    <div class="row g-2 d-flex justify-content-center">
+      <div class="col-2 d-grid">
+        <button id="snap" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Capture Image"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
+  <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4z"/>
+  <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+</svg></button>
+      </div>
+      @* <div class="col-2 d-grid">
+        <button id="stop" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-off" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10.961 12.365a2 2 0 0 0 .522-1.103l3.11 1.382A1 1 0 0 0 16 11.731V4.269a1 1 0 0 0-1.406-.913l-3.111 1.382A2 2 0 0 0 9.5 3H4.272l.714 1H9.5a1 1 0 0 1 1 1v6a1 1 0 0 1-.144.518zM1.428 4.18A1 1 0 0 0 1 5v6a1 1 0 0 0 1 1h5.014l.714 1H2a2 2 0 0 1-2-2V5c0-.675.334-1.272.847-1.634zM15 11.73l-3.5-1.555v-4.35L15 4.269zm-4.407 3.56-10-14 .814-.58 10 14z"/>
+</svg></button>
+      </div> *@
+      <div class="col-2 d-grid">
+        <button id="switch" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Switch Camera"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+  <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9"/>
+  <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
+</svg></button>
+      </div>
+      <div class="col-2 d-grid">
+        <button id="flash-on" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Turn on flashlight"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightbulb-fill" viewBox="0 0 16 16">
+  <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5"/>
+</svg></button>
+      </div>
+      <div class="col-2 d-grid">
+        <button id="flash-off" class="btn btn-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Turn off flashlight"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightbulb-off-fill" viewBox="0 0 16 16">
+  <path d="M2 6c0-.572.08-1.125.23-1.65l8.558 8.559A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m10.303 4.181L3.818 1.697a6 6 0 0 1 8.484 8.484zM5 14.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5M2.354 1.646a.5.5 0 1 0-.708.708l12 12a.5.5 0 0 0 .708-.708z"/>
+</svg></button>
+      </div>
+    </div>
+  </div>
+</div>
+
         <div class="card mx-auto col-10 my-5 mx-auto border border-10 shadow p-3">
             <!-- Profile Image -->
             <div>
                
 
                 <label>Profile Picture</label>
-                <img id="profilePic"  class="file profile-image border border-1 border-dark" src="https://img.icons8.com/fluency/240/test-account--v1.png" onclick="opencam()" />
-                <input type="file" name="file" class="form-control w-25 mx-auto">k</input>
+                <img id="profilePic"  class="file profile-image border border-1 border-dark" src="https://img.icons8.com/fluency/240/test-account--v1.png" onclick="snap('Cameraholder','camera-container',this.id)" />
+                <input type="file" id="profileuploadbtn" class="form-control w-25 mx-auto"/>
                 
             </div>
             <div class="container my-4">
@@ -141,7 +180,7 @@
                     <label>House Picture</label>
                     <div class="">
                         <img id="housePic" class="img-fluid img-thumbnail border border-dark" 
-         style="height:200px; max-height: 200px; object-fit: contain;" src="../img/house.png" onclick="openCamera('housePic')" />
+         style="height:200px; max-height: 200px; object-fit: contain;" src="../img/house.png"/>
                     </div>
                     <input type="file" class="form-control mt-2" id="houseuploadbtn" captured accept=".jpeg,.jpg,.png" />
                 </div>
@@ -155,7 +194,7 @@
                         <img id="panPic" class="img-fluid w-100 img-thumbnail border border-dark" 
          style="height:200px; max-height: 200px; object-fit: contain;" src="../img/Pan-Card.png" onclick="openCamera('panPic')" />
                     </div>
-                <input type="file" class="form-control mt-2" id="pancarduploadbtn" />
+                <input type="file" class="form-control mt-2" id="pancarduploadbtn" captured accept=".jpeg,.jpg,.png" />
                 </div>
 
                 <!-- Aadhaar Picture -->
@@ -165,94 +204,79 @@
                         <img id="aadhaarPic" class="img-fluid img-thumbnail w-100 border border-dark" 
          style="height:200px;max-height: 200px; object-fit: contain;" src="../img/aadhaarpics.png" onclick="openCamera('aadhaarPic')" />
                     </div>
-                    <input type="file" class="form-control mt-2" id="aadhaarpicuploadbtn" />
+                    <input type="file" class="form-control mt-2" id="aadhaarpicuploadbtn" captured accept=".jpeg,.jpg,.png" />
                 </div>
             </div>
-                <!-- Action Buttons -->
-                <div class="form-actions d-flex flex-wrap justify-content-evenly gap-2">
-                    <button type="button" class="btn btn-success flex-fill text-nowrap mx-1 "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-floppy-fill" viewBox="0 0 16 16">
-  <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0H3v5.5A1.5 1.5 0 0 0 4.5 7h7A1.5 1.5 0 0 0 13 5.5V0h.086a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5H14v-5.5A1.5 1.5 0 0 0 12.5 9h-9A1.5 1.5 0 0 0 2 10.5V16h-.5A1.5 1.5 0 0 1 0 14.5z"/>
-  <path d="M3 16h10v-5.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5zm9-16H4v5.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5zM9 1h2v4H9z"/>
-</svg> Save</button>
-                    <button type="button" class="btn btn-danger flex-fill text-nowrap mx-1 " onclick="clearForm()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16">
-  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708"/>
-</svg> Clear</button>
-                    <button type="button" class="btn btn-primary flex-fill text-nowrap mx-1">
-                        Next <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
-</svg> </button>
-                </div>
+           
+            <!-- Action Buttons -->
+            <div class="form-actions d-flex flex-wrap justify-content-evenly gap-2">
+                <button type="button" class="btn btn-success flex-fill text-nowrap mx-1 "><svg
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-floppy-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M0 1.5A1.5 1.5 0 0 1 1.5 0H3v5.5A1.5 1.5 0 0 0 4.5 7h7A1.5 1.5 0 0 0 13 5.5V0h.086a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5H14v-5.5A1.5 1.5 0 0 0 12.5 9h-9A1.5 1.5 0 0 0 2 10.5V16h-.5A1.5 1.5 0 0 1 0 14.5z" />
+                        <path
+                            d="M3 16h10v-5.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5zm9-16H4v5.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5zM9 1h2v4H9z" />
+                    </svg> Save</button>
+                <button type="button" class="btn btn-danger flex-fill text-nowrap mx-1 " onclick="clearForm()"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-x-square-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708" />
+                    </svg> Clear</button>
+                <button type="button" class="btn btn-primary flex-fill text-nowrap mx-1">
+                    Next <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                    </svg> </button>
             </div>
-    </form>
-</div>
+        </div>
+    
+    </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+<script src="../js/CameraJs.js"></script>
 <script>
-let cameralist = [];
-let currentCamIndex = 0;
 
-function opencam() {
-  navigator.mediaDevices.enumerateDevices()
-    .then(devices => {
-      cameralist = devices
-        .filter(device => device.kind === 'videoinput')
-        .map(device => device.deviceId);
-
-      if (cameralist.length === 0) {
-        console.error("No cameras found");
-        return;
-      }
-
-      currentCamIndex = 0;
-      useCamera(cameralist[currentCamIndex]);
-    })
-    .catch(err => console.error("Device enumeration failed:", err));
-}
-
-function useCamera(deviceId) {
-  // Reset previous stream
-  Webcam.reset();
-
-  // Set constraints with exact deviceId
-  Webcam.set({
-    width: 320,
-    height: 240,
-    image_format: 'jpeg',
-    jpeg_quality: 90,
-    constraints: {
-      video: {
-        deviceId: { exact: deviceId }
-      }
-    }
-  });
-
-  // Attach camera stream to the DOM element
-  Webcam.attach('#cam');
-}
-
-function changecam() {
-  if (cameralist.length === 0) return;
-
-  // Cycle to next camera
-  currentCamIndex = (currentCamIndex + 1) % cameralist.length;
-  useCamera(cameralist[currentCamIndex]);
-}
-
-function closecam() {
-  Webcam.reset();
-}
-
-  // Capture snapshot and show in #results
-  function takeSnapshot() {
-    Webcam.snap(function(data_uri) {
-      document.getElementById('results').innerHTML =
-        '<h3>Snapshot:</h3><img src="' + data_uri + '"/>';
+    let camera=null;
+    function snap(Cameraholder, camera, container) {
+    document.getElementById(Cameraholder).style = "display: block;";
+    document.getElementById("profileuploadbtn").value="";
+    currentCameraApp = setupCameraApp({
+        videoContainerId: camera,
+        snapshotImageId: container,
+        switchButtonId: 'switch',
+        snapButtonId: 'snap',
+        stopButtonId: 'stop',
+        flashOnButtonId: 'flash-on',
+        flashOffButtonId: 'flash-off'
     });
-  }
+}
+
+function closeContainer(containerid) {
+    document.getElementById(containerid).style = "display: none;";
+    if (currentCameraApp && typeof currentCameraApp.stopCamera === 'function') {
+        currentCameraApp.stopCamera(); // stop the camera before hiding UI
+        currentCameraApp = null;       // clear reference
+    }
+
+    
+}
+
 
    var uploadhouseBtn = document.getElementById("houseuploadbtn");
     var uploadPanbtn=document.getElementById("pancarduploadbtn");
     var uploadaadhaarBtn=document.getElementById("aadhaarpicuploadbtn");
+    var uploadProfilebtn=document.getElementById("profileuploadbtn");
+    uploadProfilebtn.addEventListener('change', (e) => {
+    const currFiles = e.target.files;
+    if (currFiles.length > 0) {
+        let src = URL.createObjectURL(currFiles[0]);
+        let imagePreview = document.getElementById('profilePic');
+        imagePreview.src = src;
+    }
+});
 
 uploadhouseBtn.addEventListener('change', (e) => {
     const currFiles = e.target.files;
@@ -291,7 +315,9 @@ uploadaadhaarBtn.addEventListener('change', (e) => {
         document.getElementById('housePic').src="../img/house.png";
         document.getElementById('aadhaarPic').src="../img/aadhaarpics.png";
         document.getElementById('panPic').src="../img/Pan-Card.png";
+        document.getElementById('profilePic').src="../img/profile.png";
     }
      
-
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 </script>

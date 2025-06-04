@@ -1,5 +1,7 @@
 using System;
 using System.Data;
+using System.Linq;
+using MySqlConnector;
 using Nidhinanban.Models;
 
 namespace Nidhinanban.Services
@@ -8,15 +10,24 @@ namespace Nidhinanban.Services
     {
         private readonly List<ViewCustomer> _viewCustomers=new();
         private int _id=1;
-        public List<string> getall()
+        public async Task<List<ViewCustomer>> getall()
         {
-            var newcustomer=new List<string>();
-            for (int i=0; i<10;i++)
+            int _id=0;
+            var data=new DataTable();
+            await Task.Run(() =>
             {
-                newcustomer.Add(_id++.ToString());
-            }
-            _id=1;
-            return newcustomer;
+                data.Columns.Add("ID", typeof(int));
+                data.Columns.Add("Name", typeof(string));
+                for (int i = 0; i < 10;)
+                {
+                    data.Rows.Add(new Object[] { _id++, "Demo" });
+                }
+            });
+            var n=data.AsEnumerable().Select(row=>new ViewCustomer{
+                Id=row.Field<int>("ID"),
+                Text=row.Field<string>("Name")!  
+            }).ToList();
+            return n;
         }
 
         public string getsatus(string id)

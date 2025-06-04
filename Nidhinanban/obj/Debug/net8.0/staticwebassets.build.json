@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FVs0uhbHX5FBOsaL09qFgkHxefgYQzdNj3BL+P6btEM=",
+  "Hash": "lVcNVmivBj+Y7iR7aZx8+gyZ+Gh52VolFTWA63TCicM=",
   "Source": "Nidhinanban",
   "BasePath": "_content/Nidhinanban",
   "Mode": "Default",
@@ -150,6 +150,25 @@
       "OriginalItemSpec": "wwwroot\\img\\house.png"
     },
     {
+      "Identity": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\img\\NIDHI.png",
+      "SourceId": "Nidhinanban",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\",
+      "BasePath": "_content/Nidhinanban",
+      "RelativePath": "img/NIDHI.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\NIDHI.png"
+    },
+    {
       "Identity": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\img\\Pan-Card.png",
       "SourceId": "Nidhinanban",
       "SourceType": "Discovered",
@@ -167,6 +186,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\Pan-Card.png"
+    },
+    {
+      "Identity": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\js\\CameraJs.js",
+      "SourceId": "Nidhinanban",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\",
+      "BasePath": "_content/Nidhinanban",
+      "RelativePath": "js/CameraJs.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\CameraJs.js"
     },
     {
       "Identity": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\js\\site.js",

@@ -19,9 +19,10 @@ namespace Nidhinanban.Controllers
             _customerService = customer;
         }
         [HttpGet]
-        public ActionResult<List<ViewCustomer>> GetAll()
+        public async Task<ActionResult<List<ViewCustomer>>>GetAll()
         {
-            return Ok(_customerService.getall());
+            var n =  await _customerService.getall(); 
+            return Ok(n);
         }
         [HttpGet("ID")]
         public ActionResult<string> Get([FromQuery]string id)

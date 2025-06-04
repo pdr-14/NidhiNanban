@@ -85,6 +85,11 @@ body {
   margin-bottom: 60px;
 }
 
+.btn-purple{
+  background-color: #9333EA;
+  color:#ffffff;
+}
+
 .btn-outline-purple:hover{
   background-color: #9333EA;
   color: #ffffff;

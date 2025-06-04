@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<InterestService>();
-builder.Services.AddSingleton<ViewCustomerService>();
+
 
  builder.WebHost.ConfigureKestrel(serverOptions=>{
      serverOptions.ListenAnyIP(7066,listenOptions=>{

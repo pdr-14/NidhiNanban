@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\img\\NIDHI.png",
+      "PackagePath": "staticwebassets\\img\\NIDHI.png"
+    },
+    {
       "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\img\\Pan-Card.png",
       "PackagePath": "staticwebassets\\img\\Pan-Card.png"
     },
@@ -27,6 +31,10 @@
     {
       "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\img\\house.png",
       "PackagePath": "staticwebassets\\img\\house.png"
+    },
+    {
+      "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\js\\CameraJs.js",
+      "PackagePath": "staticwebassets\\js\\CameraJs.js"
     },
     {
       "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\js\\site.js",
