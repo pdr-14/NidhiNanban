@@ -43,3 +43,11 @@ C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\Newton
 C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\RBush.dll
 C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\SixLabors.Fonts.dll
 C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\System.IO.Packaging.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\publish\appsettings.Development.json
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\publish\appsettings.json
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\publish\Nidhinanban.deps.json
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\publish\Nidhinanban.runtimeconfig.json
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\publish\publish\appsettings.Development.json
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\publish\publish\appsettings.json
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\publish\publish\Nidhinanban.deps.json
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\publish\publish\Nidhinanban.runtimeconfig.json

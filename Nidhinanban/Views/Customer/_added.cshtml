@@ -1,0 +1,27 @@
+@model AddCustomerModel
+<!-- Notyf CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+
+<!-- Notyf JS -->
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+@if(Model.success)
+{
+   
+    <script>
+  const notyf = new Notyf({
+    duration: 5000, // how long the toast stays
+    dismissible: true, // shows a close button
+    position: {
+      x: 'center',
+      y: 'top'
+    }
+  });
+
+  // Show a success toast
+  notyf.success('Form submitted successfully!');
+
+  // Or an error toast
+  // notyf.error('Something went wrong.');
+</script>
+
+}

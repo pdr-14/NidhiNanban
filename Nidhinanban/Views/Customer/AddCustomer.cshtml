@@ -1,7 +1,12 @@
+@model Nidhinanban.Models.AddCustomerModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
 @{
     ViewData["Title"] = "Add Customers";
 }
-
+<div id="replace">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 <style>
 
     .profile-image {
@@ -95,9 +100,10 @@
 <div>
 
 <a class="btn btn-outline-light text-black border border-10" asp-controller="Home" asp-action="Index">
-            <img width="25" height="25" src="https://img.icons8.com/plumpy/50/back.png" alt="back" /> Back To Dashboard
+            <img width="25" height="25" src="https://img.icons8.com/plumpy/50/back.png" alt="back"  /> Back To Dashboard
         </a>
 
+    <div id="success"></div>
 
     <div id="Cameraholder" class="card mx-auto col-5 mt-5" style="display:none;">
   
@@ -135,16 +141,27 @@
 </svg></button>
       </div>
       <div class="col-2 d-grid">
-        <button id="flash-off" class="btn btn-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Turn off flashlight"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightbulb-off-fill" viewBox="0 0 16 16">
-  <path d="M2 6c0-.572.08-1.125.23-1.65l8.558 8.559A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m10.303 4.181L3.818 1.697a6 6 0 0 1 8.484 8.484zM5 14.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5M2.354 1.646a.5.5 0 1 0-.708.708l12 12a.5.5 0 0 0 .708-.708z"/>
-</svg></button>
-      </div>
+                    
+                        <button id="flash-off" class="btn btn-dark" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-title="Turn off flashlight"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                height="16" fill="currentColor" class="bi bi-lightbulb-off-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M2 6c0-.572.08-1.125.23-1.65l8.558 8.559A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m10.303 4.181L3.818 1.697a6 6 0 0 1 8.484 8.484zM5 14.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5M2.354 1.646a.5.5 0 1 0-.708.708l12 12a.5.5 0 0 0 .708-.708z" />
+                            </svg></button>
+                    
+                </div>
     </div>
   </div>
 </div>
 
+
+@* Form Starts Here *@
+    
         <div class="card mx-auto col-10 my-5 mx-auto border border-10 shadow p-3">
+             <form  asp-controller="Customer" astp-action="AddCustomer" id="insertform" hx-post="/Customer/AddCustomer" hx-target="noty" hx-swap="outerhtml" >
+            @Html.ValidationSummary(true, "", new { @class = "text-danger mx-2 my-2" })
             <!-- Profile Image -->
+            <div id="noty"></div>
             <div>
                
 
@@ -158,21 +175,24 @@
                     <!-- Name -->
                     <div class="col-sm-12 col-md-6 col-lg-6">
                         <label>Customer Name</label>
-                        <input type="text" id="customerName" placeholder="Enter customer name"
+                        <input type="text" id="customerName" asp-for=CustomerName placeholder="Enter customer name"
                             onblur="setImagesBasedOnName()" />
+                        <span asp-validation-for=CustomerName class="mx-2 my-2 text-danger"></span>
                     </div>
                 
                 <!-- Phone -->
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <label>Phone Number</label>
-                    <input type="text" placeholder="Enter phone number" />
+                    <input type="text" asp-for=CustomerPhonenumber placeholder="Enter phone number" />
+                    <span asp-validation-for=CustomerPhonenumber class="mx-2 my-2 text-danger"></span>
                 </div>
             </div>
             <div class="row mt-sm-2 mt-md-4 mt-lg-4 ">
                 <!-- Address -->
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <label>Address</label>
-                    <textarea rows="3" placeholder="Enter address"></textarea>
+                    <textarea rows="3" asp-for=CustomerAddress placeholder="Enter address"></textarea>
+                    <span asp-validation-for=CustomerAddress class="mx-2 my-2 text-danger"></span>
                 </div>
 
                 <!-- House Picture -->
@@ -207,23 +227,31 @@
                     <input type="file" class="form-control mt-2" id="aadhaarpicuploadbtn" captured accept=".jpeg,.jpg,.png" />
                 </div>
             </div>
-           
+          
             <!-- Action Buttons -->
             <div class="form-actions d-flex flex-wrap justify-content-evenly gap-2">
-                <button type="button" class="btn btn-success flex-fill text-nowrap mx-1 "><svg
-                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-floppy-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M0 1.5A1.5 1.5 0 0 1 1.5 0H3v5.5A1.5 1.5 0 0 0 4.5 7h7A1.5 1.5 0 0 0 13 5.5V0h.086a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5H14v-5.5A1.5 1.5 0 0 0 12.5 9h-9A1.5 1.5 0 0 0 2 10.5V16h-.5A1.5 1.5 0 0 1 0 14.5z" />
-                        <path
-                            d="M3 16h10v-5.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5zm9-16H4v5.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5zM9 1h2v4H9z" />
-                    </svg> Save</button>
+               
+                    <input type="hidden"  id="profilehiddenvalue" value=""/>
+                    <input type="hidden"  id="househiddenvalue" value="">
+                    <input type="hidden"  id="aadharhiddenvalue">
+                    <input type="hidden"  id="pancardhiddenvalue">
+                    <button type="submit" class="btn btn-success flex-fill text-nowrap mx-1 "><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-floppy-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M0 1.5A1.5 1.5 0 0 1 1.5 0H3v5.5A1.5 1.5 0 0 0 4.5 7h7A1.5 1.5 0 0 0 13 5.5V0h.086a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5H14v-5.5A1.5 1.5 0 0 0 12.5 9h-9A1.5 1.5 0 0 0 2 10.5V16h-.5A1.5 1.5 0 0 1 0 14.5z" />
+                            <path
+                                d="M3 16h10v-5.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5zm9-16H4v5.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5zM9 1h2v4H9z" />
+                        </svg> Save</button>
+                </form>
+
                 <button type="button" class="btn btn-danger flex-fill text-nowrap mx-1 " onclick="clearForm()"><svg
                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-x-square-fill" viewBox="0 0 16 16">
                         <path
                             d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708" />
                     </svg> Clear</button>
+                
                 <button type="button" class="btn btn-primary flex-fill text-nowrap mx-1">
                     Next <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-arrow-right" viewBox="0 0 16 16">
@@ -238,7 +266,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
 <script src="../js/CameraJs.js"></script>
 <script>
-
+    var profile=document.getElementById('profilePic');
     let camera=null;
     function snap(Cameraholder, camera, container) {
     document.getElementById(Cameraholder).style = "display: block;";
@@ -252,6 +280,7 @@
         flashOnButtonId: 'flash-on',
         flashOffButtonId: 'flash-off'
     });
+    
 }
 
 function closeContainer(containerid) {
@@ -260,10 +289,18 @@ function closeContainer(containerid) {
         currentCameraApp.stopCamera(); // stop the camera before hiding UI
         currentCameraApp = null;       // clear reference
     }
+    
 
     
 }
 
+    profile.addEventListener('load',(e)=>{
+        if(profile.complete)
+        {
+        document.getElementById('profilehiddenvalue').value=profile.src;
+        console.log(document.getElementById('profilehiddenvalue').value);
+        }
+    });
 
    var uploadhouseBtn = document.getElementById("houseuploadbtn");
     var uploadPanbtn=document.getElementById("pancarduploadbtn");
@@ -319,5 +356,29 @@ uploadaadhaarBtn.addEventListener('change', (e) => {
     }
      
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+   
 </script>
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+<p>@Model.success</p>
+@if(Model.success)
+{
+    
+    <script>
+  const notyf = new Notyf({
+    duration: 5000, // how long the toast stays
+    dismissible: true, // shows a close button
+    position: {
+      x: 'center',
+      y: 'top'
+    }
+  });
+
+  // Show a success toast
+  notyf.success('Form submitted successfully!');
+
+  // Or an error toast
+  // notyf.error('Something went wrong.');
+    </script>
+}
+</div>
