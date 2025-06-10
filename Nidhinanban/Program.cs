@@ -7,9 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<InterestService>();
+builder.Services.AddTransient<AddCustomerService>();
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
 //use this if https is not working means
-builder.WebHost.UseUrls("http://0.0.0.0:7066");
+builder.WebHost.UseUrls("https://0.0.0.0:7066");
 
 //  builder.WebHost.ConfigureKestrel(serverOptions=>{
 //     serverOptions.ListenAnyIP(5209);

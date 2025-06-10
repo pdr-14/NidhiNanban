@@ -1,15 +1,17 @@
-using System.Security.Principal;
-using System.Data;
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Nidhinanban.Services;
-using Newtonsoft.Json;
 using Nidhinanban.Models;
 
 namespace Nidhinanban.Controllers
 {
     public class CustomerController: Controller
     {
+        
+        private readonly AddCustomerService _addCustomerService;
+        public CustomerController(AddCustomerService addCustomerService)
+        {
+            _addCustomerService = addCustomerService;
+        }
         [HttpGet]
         public IActionResult AddCustomer()
         {
@@ -17,14 +19,14 @@ namespace Nidhinanban.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddCustomer(AddCustomerModel model)
+        public async Task<IActionResult> AddCustomer(AddCustomerModel model)
         {
            Console.WriteLine(ModelState.IsValid.ToString());
             if(ModelState.IsValid)
             {
                 model.success=true;
+                string status = await _addCustomerService.AddCustomer(model.CustomerName!,model.CustomerPhonenumber!,model.CustomerAddress!,model.CustomerProfileimage!,model.CustomerAadharimage!,model.CusomerPancardimage!,model.CustomerHouseimage!);
                 
-                return PartialView("_added",model);
             }
             if (!ModelState.IsValid)
 {
@@ -38,8 +40,8 @@ namespace Nidhinanban.Controllers
         }
     }
 }
-
-            return View(model);
+    return PartialView("_added", model);
+        
         }
     }
 }

@@ -7,6 +7,7 @@
 }
 <div id="replace">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+
 <style>
 
     .profile-image {
@@ -105,7 +106,7 @@
 
     <div id="success"></div>
 
-    <div id="Cameraholder" class="card mx-auto col-5 mt-5" style="display:none;">
+    <div id="Cameraholder" class="card mx-auto col-sm-8 col-lg-5 mt-5" style="display:none;">
   
  <div class="card-header d-flex justify-content-between align-items-center">
     <h3>Camera</h3>
@@ -156,20 +157,18 @@
 
 
 @* Form Starts Here *@
-    
+    <form  asp-controller="Customer" astp-action="AddCustomer" id="insertform" hx-post="/Customer/AddCustomer" hx-target="#Notify"  hx-swap="innerHTML" >
+    <div id="Notify"></div>
         <div class="card mx-auto col-10 my-5 mx-auto border border-10 shadow p-3">
-             <form  asp-controller="Customer" astp-action="AddCustomer" id="insertform" hx-post="/Customer/AddCustomer" hx-target="noty" hx-swap="outerhtml" >
+             
             @Html.ValidationSummary(true, "", new { @class = "text-danger mx-2 my-2" })
             <!-- Profile Image -->
-            <div id="noty"></div>
-            <div>
-               
-
-                <label>Profile Picture</label>
+                <div class="d-flex justify-content-center card-header card-header-tab"><h3 >Add Customer</h3></div>
+                
                 <img id="profilePic"  class="file profile-image border border-1 border-dark" src="https://img.icons8.com/fluency/240/test-account--v1.png" onclick="snap('Cameraholder','camera-container',this.id)" />
                 <input type="file" id="profileuploadbtn" class="form-control w-25 mx-auto"/>
                 
-            </div>
+            
             <div class="container my-4">
                 <div class="row">
                     <!-- Name -->
@@ -233,7 +232,7 @@
                
                     <input type="hidden"  id="profilehiddenvalue" value=""/>
                     <input type="hidden"  id="househiddenvalue" value="">
-                    <input type="hidden"  id="aadharhiddenvalue">
+                    <input type="hidden"  id="aadhaarhiddenvalue">
                     <input type="hidden"  id="pancardhiddenvalue">
                     <button type="submit" class="btn btn-success flex-fill text-nowrap mx-1 "><svg
                             xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -265,120 +264,6 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
 <script src="../js/CameraJs.js"></script>
-<script>
-    var profile=document.getElementById('profilePic');
-    let camera=null;
-    function snap(Cameraholder, camera, container) {
-    document.getElementById(Cameraholder).style = "display: block;";
-    document.getElementById("profileuploadbtn").value="";
-    currentCameraApp = setupCameraApp({
-        videoContainerId: camera,
-        snapshotImageId: container,
-        switchButtonId: 'switch',
-        snapButtonId: 'snap',
-        stopButtonId: 'stop',
-        flashOnButtonId: 'flash-on',
-        flashOffButtonId: 'flash-off'
-    });
-    
-}
-
-function closeContainer(containerid) {
-    document.getElementById(containerid).style = "display: none;";
-    if (currentCameraApp && typeof currentCameraApp.stopCamera === 'function') {
-        currentCameraApp.stopCamera(); // stop the camera before hiding UI
-        currentCameraApp = null;       // clear reference
-    }
-    
-
-    
-}
-
-    profile.addEventListener('load',(e)=>{
-        if(profile.complete)
-        {
-        document.getElementById('profilehiddenvalue').value=profile.src;
-        console.log(document.getElementById('profilehiddenvalue').value);
-        }
-    });
-
-   var uploadhouseBtn = document.getElementById("houseuploadbtn");
-    var uploadPanbtn=document.getElementById("pancarduploadbtn");
-    var uploadaadhaarBtn=document.getElementById("aadhaarpicuploadbtn");
-    var uploadProfilebtn=document.getElementById("profileuploadbtn");
-    uploadProfilebtn.addEventListener('change', (e) => {
-    const currFiles = e.target.files;
-    if (currFiles.length > 0) {
-        let src = URL.createObjectURL(currFiles[0]);
-        let imagePreview = document.getElementById('profilePic');
-        imagePreview.src = src;
-    }
-});
-
-uploadhouseBtn.addEventListener('change', (e) => {
-    const currFiles = e.target.files;
-    if (currFiles.length > 0) {
-        let src = URL.createObjectURL(currFiles[0]);
-        let imagePreview = document.getElementById('housePic');
-        imagePreview.src = src;
-    }
-});
-
-uploadPanbtn.addEventListener('change', (e) => {
-    const currFiles = e.target.files;
-    if (currFiles.length > 0) {
-        let src = URL.createObjectURL(currFiles[0]);
-        let imagePreview = document.getElementById('panPic');
-        imagePreview.src = src;
-    }
-});
-
-uploadaadhaarBtn.addEventListener('change', (e) => {
-    const currFiles = e.target.files;
-    if (currFiles.length > 0) {
-        let src = URL.createObjectURL(currFiles[0]);
-        let imagePreview = document.getElementById('aadhaarPic');
-        imagePreview.src = src;
-    }
-});
-
-
-    for (let id in placeholders) {
-        document.getElementById(id).src = placeholders[id];
-    }
-
-    function clearForm() {
-        document.querySelectorAll('input[type="text"], textarea,input[type="file"]').forEach(e => e.value = '');
-        document.getElementById('housePic').src="../img/house.png";
-        document.getElementById('aadhaarPic').src="../img/aadhaarpics.png";
-        document.getElementById('panPic').src="../img/Pan-Card.png";
-        document.getElementById('profilePic').src="../img/profile.png";
-    }
-     
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-   
-</script>
+<script src="../js/AddCustomer.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
-<p>@Model.success</p>
-@if(Model.success)
-{
-    
-    <script>
-  const notyf = new Notyf({
-    duration: 5000, // how long the toast stays
-    dismissible: true, // shows a close button
-    position: {
-      x: 'center',
-      y: 'top'
-    }
-  });
-
-  // Show a success toast
-  notyf.success('Form submitted successfully!');
-
-  // Or an error toast
-  // notyf.error('Something went wrong.');
-    </script>
-}
 </div>

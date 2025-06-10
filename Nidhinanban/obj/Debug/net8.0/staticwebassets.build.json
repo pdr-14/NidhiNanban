@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YIHQCvxbDPzFrKW+h0D35y5lZQUBLulFceQg7AXjl5E=",
+  "Hash": "Jno7yh8ApzwZChWrTKp/o3t25Nu1Du+G3UiM4kYeYL4=",
   "Source": "Nidhinanban",
   "BasePath": "_content/Nidhinanban",
   "Mode": "Default",
@@ -205,6 +205,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\profile.png"
+    },
+    {
+      "Identity": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\js\\AddCustomer.js",
+      "SourceId": "Nidhinanban",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\",
+      "BasePath": "_content/Nidhinanban",
+      "RelativePath": "js/AddCustomer.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\AddCustomer.js"
     },
     {
       "Identity": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\js\\CameraJs.js",
