@@ -22,26 +22,35 @@ namespace Nidhinanban.Controllers
         public async Task<IActionResult> AddCustomer(AddCustomerModel model)
         {
            Console.WriteLine(ModelState.IsValid.ToString());
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                model.success=true;
-                string status = await _addCustomerService.AddCustomer(model.CustomerName!,model.CustomerPhonenumber!,model.CustomerAddress!,model.CustomerProfileimage!,model.CustomerAadharimage!,model.CusomerPancardimage!,model.CustomerHouseimage!);
-                
+
+                string status = await _addCustomerService.AddCustomer(model.CustomerName!, model.CustomerPhonenumber!, model.CustomerAddress!, model.CustomerProfileimage!, model.CustomerAadharimage!, model.CustomerPancardimage!, model.CustomerHouseimage!);
+                Console.WriteLine(status);
+                if (status.ToLower() == "inserted")
+                {
+                    model.success = true;
+                    return PartialView("_added", model);
+                }
             }
-            if (!ModelState.IsValid)
-{
-    model.success=false;
-    foreach (var error in ModelState)
-    {
-        Console.WriteLine($"Key: {error.Key}");
-        foreach (var e in error.Value.Errors)
-        {
-            Console.WriteLine($"Error: {e.ErrorMessage}");
+            else if (!ModelState.IsValid)
+            {
+                    model.success=false;
+                    foreach (var error in ModelState)
+                    {
+                                Console.WriteLine($"Key: {error.Key}");
+                                foreach (var e in error.Value.Errors)
+                                {
+                                        Console.WriteLine($"Error: {e.ErrorMessage}");
+                                }
+                    }
+            }           
+            return PartialView("_added", model);
         }
-    }
-}
-    return PartialView("_added", model);
-        
+        [HttpGet]
+        public IActionResult ViewCustomer()
+        {
+            return View();
         }
     }
 }

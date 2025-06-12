@@ -24,21 +24,35 @@ function closeContainer(containerid) {
         currentCameraApp.stopCamera(); // stop the camera before hiding UI
         currentCameraApp = null;       // clear reference
     }
-    
-
-    
+       
 }
 
+function isBase64Image(str) {
+        const base64Pattern = /^data:image\/(png|jpeg|jpg|gif|webp|bmp|svg\+xml);base64,[A-Za-z0-9+/=]+$/;
+        return base64Pattern.test(str);
+    }
+
     profile.addEventListener('load',(e)=>{
-        if(profile.complete)
+        if(profile.complete && profile.naturalWidth !== 0)
         {
-        document.getElementById('profilehiddenvalue').value=profile.src;
+            
+            if(isBase64Image(profile.src))
+            {
+                    document.getElementById('profilehiddenvalue').value=profile.src;
+            }
+            else{
+                document.getElementById('profilehiddenvalue').value="";
+            }
+            console.log(isBase64Image(profile.src));
         }
     });
     house.addEventListener('load',(e)=>{
         if(house.complete)
         {
-            document.getElementById('househiddenvalue').value=house.src;
+            if((isBase64Image(house.src))===true)
+            {
+                document.getElementById('househiddenvalue').value=house.src;
+            }
         }
     });
      pan.addEventListener('load',(e)=>{
@@ -54,6 +68,9 @@ function closeContainer(containerid) {
             console.log(document.getElementById('aadhaarhiddenvalue').value);
         }
     });
+    
+    
+
 //
    var uploadhouseBtn = document.getElementById("houseuploadbtn");
     var uploadPanbtn=document.getElementById("pancarduploadbtn");
@@ -114,10 +131,6 @@ uploadaadhaarBtn.addEventListener('change', (e) => {
 });
 
 
-    for (let id in placeholders) {
-        document.getElementById(id).src = placeholders[id];
-    }
-
     function clearForm() {
         document.querySelectorAll('input[type="text"], textarea,input[type="file"]').forEach(e => e.value = '');
         document.getElementById('housePic').src="../img/house.png";
@@ -125,7 +138,3 @@ uploadaadhaarBtn.addEventListener('change', (e) => {
         document.getElementById('panPic').src="../img/Pan-Card.png";
         document.getElementById('profilePic').src="../img/profile.png";
     }
-     
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-   

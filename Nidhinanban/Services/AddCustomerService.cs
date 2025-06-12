@@ -1,3 +1,4 @@
+using Internal;
 using System;
 using MySqlConnector;
 using Nidhinanban.LogicClasses;
@@ -19,24 +20,36 @@ namespace Nidhinanban.Services
         MySqlConnection con = new MySqlConnection(connectionstring);
         
         MySqlCommand commandstring = new MySqlCommand();
-        public async Task<string> AddCustomer(string customerName, string CustomerPhonenumber, string CustomerAddress, string CustomerProfileimage, string CustomerAadharimage, string CusomerPancardimage, string CustomerHouseimage)
+        public async Task<string> AddCustomer(string customerName, string CustomerPhonenumber, string CustomerAddress, IFormFile CustomerProfileimage, IFormFile CustomerAadharimage, IFormFile CusomerPancardimage, IFormFile CustomerHouseimage)
         {
             
             string result = "";
             try
             {
                 ImageManipulation manipulation=new ImageManipulation();
-                byte[] CustomerProfileimagebyte=manipulation.ConvertBase64ImageToBlob(CustomerProfileimage);          
+                await  manipulation.StoreImageToTheServer(customerName, CustomerProfileimage,"Profile");
+                await manipulation.StoreImageToTheServer(customerName,CustomerHouseimage,"House");
+                await manipulation.StoreImageToTheServer(customerName, CustomerAadharimage, "Aadhaar");
+                await manipulation.StoreImageToTheServer(customerName, CusomerPancardimage,"PanCard");
                 await con.OpenAsync();
                 commandstring.Connection = con;
-                commandstring.CommandText = "Show Tables";
-                MySqlDataReader dr = await commandstring.ExecuteReaderAsync();
-                if (dr.HasRows)
+                commandstring.CommandText = "INSERT INTO CUSTOMER VALUE(@customername,@customerphonenumber,@customeraddress)";
+                commandstring.Parameters.AddWithValue("@customername",customerName);
+                commandstring.Parameters.AddWithValue("@customerphonenumber",CustomerPhonenumber);
+                commandstring.Parameters.AddWithValue("@customeraddress",CustomerAddress);
+                int rowcount=await commandstring.ExecuteNonQueryAsync();
+                if(rowcount==0)
                 {
-                    await dr.ReadAsync();
-                    result = dr[0].ToString()!;
+                    return result="Error Code x0ENNRA"; //Error code "Error No New Row Added" => ENNRA (Expansion)
                 }
-
+                else if(rowcount>0)
+                {
+                    return result="Inserted";
+                }
+                else
+                {
+                    return result="Error Code xoUE"; //Error code "Unkown Error" => UE;
+                }
             }
             catch (Exception ex)
             {

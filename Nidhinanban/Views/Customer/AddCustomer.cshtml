@@ -15,7 +15,6 @@
         height: 120px;
         border-radius: 50%;
         object-fit: cover;
-        cursor: pointer;
         display: block;
         margin: 10px auto;
     }
@@ -157,26 +156,30 @@
 
 
 @* Form Starts Here *@
-    <form  asp-controller="Customer" astp-action="AddCustomer" id="insertform" hx-post="/Customer/AddCustomer" hx-target="#Notify"  hx-swap="innerHTML" >
+    <form  asp-controller="Customer" asp-action="AddCustomer" enctype="multipart/form-data" id="insertform" hx-post="/Customer/AddCustomer" hx-target="#Notify"  hx-swap="innerHTML" >
     <div id="Notify"></div>
         <div class="card mx-auto col-10 my-5 mx-auto border border-10 shadow p-3">
              
             @Html.ValidationSummary(true, "", new { @class = "text-danger mx-2 my-2" })
             <!-- Profile Image -->
                 <div class="d-flex justify-content-center card-header card-header-tab"><h3 >Add Customer</h3></div>
-                
-                <img id="profilePic"  class="file profile-image border border-1 border-dark" src="https://img.icons8.com/fluency/240/test-account--v1.png" onclick="snap('Cameraholder','camera-container',this.id)" />
-                <input type="file" id="profileuploadbtn" class="form-control w-25 mx-auto"/>
-                
+                @* onclick="snap('Cameraholder','camera-container',this.id)" *@
+                <img id="profilePic"  class="file profile-image border border-1 border-dark" src="https://img.icons8.com/fluency/240/test-account--v1.png"  />
+                <input type="file" asp-for=CustomerProfileimage id="profileuploadbtn" class="form-control w-25 mx-auto" accept=".jpeg,.jpg,.png"/>
+                <input type="hidden"  id="profilehiddenvalue" asp-for=CustomerProfileimage/>
+                <div class="d-flex justify-content-center">
+                <span asp-validation-for=CustomerProfileimage class="mx-2 my-2 text-danger"></span>  
+                </div>
             
             <div class="container my-4">
                 <div class="row">
                     <!-- Name -->
                     <div class="col-sm-12 col-md-6 col-lg-6">
                         <label>Customer Name</label>
-                        <input type="text" id="customerName" asp-for=CustomerName placeholder="Enter customer name"
-                            onblur="setImagesBasedOnName()" />
+                        <input type="text" id="customerName" asp-for=CustomerName placeholder="Enter customer name"/>
+                        
                         <span asp-validation-for=CustomerName class="mx-2 my-2 text-danger"></span>
+                        
                     </div>
                 
                 <!-- Phone -->
@@ -197,24 +200,26 @@
                 <!-- House Picture -->
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <label>House Picture</label>
-                    <div class="">
-                        <img id="housePic" class="img-fluid img-thumbnail border border-dark" 
-         style="height:200px; max-height: 200px; object-fit: contain;" src="../img/house.png"/>
-                    </div>
-                    <input type="file" class="form-control mt-2" id="houseuploadbtn" captured accept=".jpeg,.jpg,.png" />
-                </div>
+                            <div class="">
+                                <img id="housePic" class="img-fluid img-thumbnail border border-dark"
+                                    style="height:200px; max-height: 200px; object-fit: contain;"
+                                    src="../img/house.png" />
+                            </div>
+                            <input type="file" class="form-control mt-2" id="houseuploadbtn" asp-for=CustomerHouseimage accept=".jpeg,.jpg,.png" />
+                            <span asp-validation-for=CustomerHouseimage class="mx-2 my-2 text-danger"></span>
+                        </div>
             </div>
 
             <div class="row mt-sm-2 mt-md-5 mt-lg-5 ">
                 <!-- PAN Picture -->
-                <div class="col-sm-12 col-md-6 col-lg-6 d-flex-row justify-content-center">
-                    <label>PAN Picture</label>
-                    <div style="">
-                        <img id="panPic" class="img-fluid w-100 img-thumbnail border border-dark" 
-         style="height:200px; max-height: 200px; object-fit: contain;" src="../img/Pan-Card.png" onclick="openCamera('panPic')" />
-                    </div>
-                <input type="file" class="form-control mt-2" id="pancarduploadbtn" captured accept=".jpeg,.jpg,.png" />
-                </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6 d-flex-row justify-content-center">
+                            <label>PAN Picture</label>
+                            <div style="">
+                                <img id="panPic" class="img-fluid w-100 img-thumbnail border border-dark" style="height:200px; max-height: 200px; object-fit: contain;" src="../img/Pan-Card.png" onclick="openCamera('panPic')" />
+                            </div>
+                            <input type="file" class="form-control mt-2" id="pancarduploadbtn" asp-for=CustomerPancardimage  accept=".jpeg,.jpg,.png" />
+                            <span asp-validation-for=CustomerPancardimage class="mx-2 my-2 text-danger"></span>
+                        </div>
 
                 <!-- Aadhaar Picture -->
                 <div class="col-sm-12 col-md-6 col-lg-6">
@@ -223,14 +228,15 @@
                         <img id="aadhaarPic" class="img-fluid img-thumbnail w-100 border border-dark" 
          style="height:200px;max-height: 200px; object-fit: contain;" src="../img/aadhaarpics.png" onclick="openCamera('aadhaarPic')" />
                     </div>
-                    <input type="file" class="form-control mt-2" id="aadhaarpicuploadbtn" captured accept=".jpeg,.jpg,.png" />
+                    <input type="file" class="form-control mt-2" id="aadhaarpicuploadbtn" asp-for=CustomerAadharimage accept=".jpeg,.jpg,.png" />
+                    <span asp-validation-for=CustomerAadharimage class="mx-2 my-2 text-danger"></span>
                 </div>
             </div>
           
             <!-- Action Buttons -->
             <div class="form-actions d-flex flex-wrap justify-content-evenly gap-2">
                
-                    <input type="hidden"  id="profilehiddenvalue" value=""/>
+                    
                     <input type="hidden"  id="househiddenvalue" value="">
                     <input type="hidden"  id="aadhaarhiddenvalue">
                     <input type="hidden"  id="pancardhiddenvalue">

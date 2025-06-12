@@ -47,6 +47,10 @@
               "target": "Package",
               "version": "[0.105.0, )"
             },
+            "Magick.NET-Q16-AnyCPU": {
+              "target": "Package",
+              "version": "[14.6.0, )"
+            },
             "Magick.NET.Core": {
               "target": "Package",
               "version": "[14.6.0, )"

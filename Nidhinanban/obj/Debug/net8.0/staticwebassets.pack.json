@@ -37,6 +37,10 @@
       "PackagePath": "staticwebassets\\img\\profile.png"
     },
     {
+      "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\img\\trailimage.png",
+      "PackagePath": "staticwebassets\\img\\trailimage.png"
+    },
+    {
       "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\js\\AddCustomer.js",
       "PackagePath": "staticwebassets\\js\\AddCustomer.js"
     },

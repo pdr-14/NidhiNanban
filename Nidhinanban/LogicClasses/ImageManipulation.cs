@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using ImageMagick;
 
 namespace Nidhinanban.LogicClasses
 {
@@ -17,7 +19,10 @@ namespace Nidhinanban.LogicClasses
         public  byte[] ConvertBase64ImageToBlob(string base64Data)
         {
             if (string.IsNullOrWhiteSpace(base64Data))
-                throw new ArgumentException("Input Base64 string is null or empty.");
+            {
+                return null;
+            }
+                //throw new ArgumentException("Input Base64 string is null or empty.");
 
             // Check if the string contains the metadata prefix
             int commaIndex = base64Data.IndexOf(',');
@@ -26,6 +31,41 @@ namespace Nidhinanban.LogicClasses
 
             // Convert Base64 string to byte array
             return Convert.FromBase64String(base64String);
+        }
+
+        public async Task StoreImageToTheServer(string CustomerID, IFormFile ImageData, string type)
+        {
+                using var memoryStream = new MemoryStream();
+                await ImageData.CopyToAsync(memoryStream);
+                memoryStream.Position = 0;
+            using var image = new MagickImage(memoryStream);
+            if (Directory.Exists("Customer_Images"))
+            {
+                string path = Path.Combine("Customer_Images", CustomerID);
+                Directory.CreateDirectory(path);
+                var filename = CustomerID + type + "Image.jpg";
+                var filepath = Path.Combine(path, filename);
+                if(type=="Profile")
+                {
+                    image.Resize(400,400);
+                }
+                image.Quality = 75;
+                await image.WriteAsync(filepath);
+            }
+            else
+            {
+                Directory.CreateDirectory("Customer_Images");
+                string path = Path.Combine("Customer_Images", CustomerID);
+                Directory.CreateDirectory(path);
+                var filename = CustomerID + type + "Image.jpg";
+                var filepath = Path.Combine(path, filename);
+                if(type=="Profile")
+                {
+                    image.Resize(400,400);
+                }
+                image.Quality = 75;
+                await image.WriteAsync(filepath);
+            }
         }
     }
 }

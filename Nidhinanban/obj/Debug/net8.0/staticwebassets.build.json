@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Jno7yh8ApzwZChWrTKp/o3t25Nu1Du+G3UiM4kYeYL4=",
+  "Hash": "ozoD35YMTUZ4Yhu0nybGyAPltHU+0rZpXlIeU/rrecA=",
   "Source": "Nidhinanban",
   "BasePath": "_content/Nidhinanban",
   "Mode": "Default",
@@ -205,6 +205,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\profile.png"
+    },
+    {
+      "Identity": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\img\\trailimage.png",
+      "SourceId": "Nidhinanban",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\",
+      "BasePath": "_content/Nidhinanban",
+      "RelativePath": "img/trailimage.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\trailimage.png"
     },
     {
       "Identity": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\js\\AddCustomer.js",
