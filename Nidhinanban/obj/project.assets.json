@@ -4740,19 +4740,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ngoku\\.nuget\\packages\\": {}
+    "/home/dileep/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\Nidhinanban.csproj",
+      "projectUniqueName": "/home/dileep/Documents/NidhiNanban/Nidhinanban/Nidhinanban.csproj",
       "projectName": "Nidhinanban",
-      "projectPath": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\Nidhinanban.csproj",
-      "packagesPath": "C:\\Users\\ngoku\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\obj\\",
+      "projectPath": "/home/dileep/Documents/NidhiNanban/Nidhinanban/Nidhinanban.csproj",
+      "packagesPath": "/home/dileep/.nuget/packages/",
+      "outputPath": "/home/dileep/Documents/NidhiNanban/Nidhinanban/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ngoku\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/dileep/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -4770,11 +4770,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -4839,16 +4834,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.409/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.117/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
-    }
-  ]
+  }
 }

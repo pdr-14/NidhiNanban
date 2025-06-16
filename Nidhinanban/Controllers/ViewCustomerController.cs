@@ -6,7 +6,7 @@ using Nidhinanban.Models;
 using Nidhinanban.Services;
 using System.Data;
 
-namespace Nidhinanban.Controllers
+namespace Nidhinanban.Api.Controllers
 {
     [ApiController]
     [Route("View/[controller]")]
@@ -21,13 +21,13 @@ namespace Nidhinanban.Controllers
         [HttpGet]
         public async Task<ActionResult<List<ViewCustomer>>>GetAll()
         {
-            var n =  await _customerService.getall(); 
+            var n = await _customerService.getallcustomer();
+            if (n.Count == 0)
+            {
+                return BadRequest("No customers found");
+            }
             return Ok(n);
         }
-        [HttpGet("ID")]
-        public ActionResult<string> Get([FromQuery]string id)
-        {
-            return Ok(_customerService.getsatus(id));
-        }
+       
     }
 }

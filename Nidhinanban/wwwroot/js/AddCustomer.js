@@ -65,7 +65,6 @@ function isBase64Image(str) {
         if(aadhaar.complete)
         {
             document.getElementById('aadhaarhiddenvalue').value=aadhaar.src;
-            console.log(document.getElementById('aadhaarhiddenvalue').value);
         }
     });
     

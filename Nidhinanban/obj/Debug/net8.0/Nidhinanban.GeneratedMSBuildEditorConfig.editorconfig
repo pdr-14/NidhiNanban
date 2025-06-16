@@ -17,63 +17,63 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Nidhinanban
 build_property.RootNamespace = Nidhinanban
-build_property.ProjectDir = C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\
+build_property.ProjectDir = /home/dileep/Documents/NidhiNanban/Nidhinanban/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban
+build_property.MSBuildProjectDirectory = /home/dileep/Documents/NidhiNanban/Nidhinanban
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/ngoku/OneDrive/Desktop/Nidhi Nanban/Nidhinanban/Views/Customer/AddCustomer.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQWRkQ3VzdG9tZXIuY3NodG1s
+[/home/dileep/Documents/NidhiNanban/Nidhinanban/Views/Customer/AddCustomer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ3VzdG9tZXIvQWRkQ3VzdG9tZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ngoku/OneDrive/Desktop/Nidhi Nanban/Nidhinanban/Views/Customer/ViewCustomer.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcVmlld0N1c3RvbWVyLmNzaHRtbA==
+[/home/dileep/Documents/NidhiNanban/Nidhinanban/Views/Customer/ViewCustomer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ3VzdG9tZXIvVmlld0N1c3RvbWVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ngoku/OneDrive/Desktop/Nidhi Nanban/Nidhinanban/Views/Customer/_added.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcX2FkZGVkLmNzaHRtbA==
+[/home/dileep/Documents/NidhiNanban/Nidhinanban/Views/Customer/_added.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ3VzdG9tZXIvX2FkZGVkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ngoku/OneDrive/Desktop/Nidhi Nanban/Nidhinanban/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[/home/dileep/Documents/NidhiNanban/Nidhinanban/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ngoku/OneDrive/Desktop/Nidhi Nanban/Nidhinanban/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[/home/dileep/Documents/NidhiNanban/Nidhinanban/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ngoku/OneDrive/Desktop/Nidhi Nanban/Nidhinanban/Views/Home/ViewIntreset.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWV3SW50cmVzZXQuY3NodG1s
+[/home/dileep/Documents/NidhiNanban/Nidhinanban/Views/Home/ViewIntreset.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9WaWV3SW50cmVzZXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ngoku/OneDrive/Desktop/Nidhi Nanban/Nidhinanban/Views/Intrest/Intrestcalc.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50cmVzdFxJbnRyZXN0Y2FsYy5jc2h0bWw=
+[/home/dileep/Documents/NidhiNanban/Nidhinanban/Views/Intrest/Intrestcalc.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSW50cmVzdC9JbnRyZXN0Y2FsYy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ngoku/OneDrive/Desktop/Nidhi Nanban/Nidhinanban/Views/Intrest/_Intresthidden.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50cmVzdFxfSW50cmVzdGhpZGRlbi5jc2h0bWw=
+[/home/dileep/Documents/NidhiNanban/Nidhinanban/Views/Intrest/_Intresthidden.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSW50cmVzdC9fSW50cmVzdGhpZGRlbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ngoku/OneDrive/Desktop/Nidhi Nanban/Nidhinanban/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+[/home/dileep/Documents/NidhiNanban/Nidhinanban/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ngoku/OneDrive/Desktop/Nidhi Nanban/Nidhinanban/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[/home/dileep/Documents/NidhiNanban/Nidhinanban/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ngoku/OneDrive/Desktop/Nidhi Nanban/Nidhinanban/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[/home/dileep/Documents/NidhiNanban/Nidhinanban/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ngoku/OneDrive/Desktop/Nidhi Nanban/Nidhinanban/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+[/home/dileep/Documents/NidhiNanban/Nidhinanban/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ngoku/OneDrive/Desktop/Nidhi Nanban/Nidhinanban/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-qhdq7u0yom
+[/home/dileep/Documents/NidhiNanban/Nidhinanban/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-asgq2w5oq5

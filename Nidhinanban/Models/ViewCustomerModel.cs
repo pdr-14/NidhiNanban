@@ -2,7 +2,8 @@ namespace Nidhinanban.Models;
 
 public class ViewCustomer
 {
-     
-        public int Id { get; set; }
-        public string Text { get; set; } = string.Empty;
+
+        public string? customername { get; set; }
+        public string? cutomerphonenumber { get; set; }
+        public string? customeraddress{ get; set; }
 }

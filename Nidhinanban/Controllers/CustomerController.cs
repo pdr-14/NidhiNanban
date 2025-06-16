@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Nidhinanban.Services;
 using Nidhinanban.Models;
+using System.Net.Http;
 
 namespace Nidhinanban.Controllers
 {
@@ -8,10 +9,14 @@ namespace Nidhinanban.Controllers
     {
         
         private readonly AddCustomerService _addCustomerService;
-        public CustomerController(AddCustomerService addCustomerService)
+        private readonly HttpClient _httpClient;
+        public CustomerController(AddCustomerService addCustomerService, IHttpClientFactory httpClientFactory)
         {
             _addCustomerService = addCustomerService;
+            _httpClient = httpClientFactory.CreateClient();
+            _httpClient.BaseAddress = new Uri("https://localhost:7065/"); 
         }
+        
         [HttpGet]
         public IActionResult AddCustomer()
         {
@@ -21,12 +26,15 @@ namespace Nidhinanban.Controllers
         [HttpPost]
         public async Task<IActionResult> AddCustomer(AddCustomerModel model)
         {
-           Console.WriteLine(ModelState.IsValid.ToString());
+            if (model == null)
+            {
+                return BadRequest("Model cannot be null");
+            }
             if (ModelState.IsValid)
             {
 
-                string status = await _addCustomerService.AddCustomer(model.CustomerName!, model.CustomerPhonenumber!, model.CustomerAddress!, model.CustomerProfileimage!, model.CustomerAadharimage!, model.CustomerPancardimage!, model.CustomerHouseimage!);
-                Console.WriteLine(status);
+                string status = "Inserted"; //await _addCustomerService.AddCustomer(model.CustomerName!, model.CustomerPhonenumber!, model.CustomerAddress!, model.CustomerProfileimage!, model.CustomerAadharimage!, model.CustomerPancardimage!, model.CustomerHouseimage!);
+                Console.WriteLine(status+":"+(status.ToLower() == "inserted").ToString());
                 if (status.ToLower() == "inserted")
                 {
                     model.success = true;
@@ -48,9 +56,17 @@ namespace Nidhinanban.Controllers
             return PartialView("_added", model);
         }
         [HttpGet]
-        public IActionResult ViewCustomer()
+        public async  Task<IActionResult> ViewCustomer()
         {
-            return View();
+            var response = await _httpClient.GetAsync("/View/ViewCustomer");
+            if (!response.IsSuccessStatusCode)
+            {
+                ViewBag.Error = "No customers found";
+                return View(new List<ViewCustomer>());
+            }
+
+            var data = await response.Content.ReadFromJsonAsync<List<ViewCustomer>>();
+            return View(data);
         }
     }
 }

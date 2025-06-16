@@ -1,26 +1,26 @@
 @model AddCustomerModel
 <!-- Notyf CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
-
+<script src="/js/AddCustomer.js"></script>
 <!-- Notyf JS -->
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
-@if(Model.success){
-   
+<input type="hidden" id="type" value="@Model.success" />
+@if (Model.success)
+{
     <script>
-  const notyf = new Notyf({
-    duration: 5000, // how long the toast stays
-    dismissible: true, // shows a close button
-    position: {
-      x: 'center',
-      y: 'top'
-    }
-  });
-  var name=document.getElementById('customerName').value;
-  // Show a success toast
-  notyf.success(name+' Added Successfully !');
+        if (typeof notyf === 'undefined') {
+            var notyf = new Notyf({
+                duration: 5000,
+                dismissible: true,
+                position: {
+                    x: 'center',
+                    y: 'top'
+                }
+            });
+        }
 
-  // Or an error toast
-  // notyf.error('Something went wrong.');
-</script>
-
+        var name = document.getElementById('customerName').value;
+        notyf.success(name + ' Added Successfully!');
+        clearForm();
+    </script>
 }
