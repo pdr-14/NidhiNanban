@@ -5,7 +5,8 @@ namespace Nidhinanban.Models
 {
     public class AddCustomerModel
     {
-        
+
+        public string CustomerId { get; set; } = String.Empty;
         [Required(ErrorMessage = "Enter The Customer Name")]
         public string? CustomerName { get; set; } =string.Empty;
         [Required(ErrorMessage="Enter The Customer Phone Number")]

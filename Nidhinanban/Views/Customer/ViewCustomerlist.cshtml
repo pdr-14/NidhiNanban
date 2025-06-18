@@ -1,0 +1,61 @@
+@model List<ViewCustomer>
+@{
+    ViewData["Title"]="View Customer";
+}
+<head>
+  <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"  />
+</head>
+
+<style>
+    .profile-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        display: block;
+        margin: 10px auto;
+    }
+</style>
+
+<div>
+<a class="btn btn-outline-light text-black border border-10" asp-controller="Home" asp-action="Index">
+            <img width="25" height="25" src="https://img.icons8.com/plumpy/50/back.png" alt="back"  /> Back To Dashboard
+        </a>
+        <div>
+          <div class="card mx-auto col-sm-10 col-md-6 col-lg-4 my-5 mx-auto border border-5 shadow p-3">
+                <div class="card-header">
+                        <div class="d-flex justify-content-center"><h3 class="">View Customer</h3></div>
+                </div>                
+                <div class="card-body">
+                        <div class="my-3">
+                            <label class="text-warp ">Enter The Customer ID</label>
+                            <input class="form-control my-2 " type="text" placeholder="Enter the Customer ID to search"/>
+                            <div class="d-flex justify-content-center">
+                                    <button class="btn btn-dark mt-3 w-75 boder border-5 ">Search Customer</button>
+                            </div>
+                        </div>
+                </div>
+          </div>
+          
+        </div>
+        <table class="table table-bordered bg-light ">
+            <tr>
+                <th>Customer Name</th>
+                <th>Principle Amount</th>
+                <th>interest Amount</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var customer in Model)
+            {
+                    <tr>
+                           <td> @customer.customername</td>
+                            
+                            <td><label class="text-success">$100</label></td>
+                        
+                               <td> <label class="text-danger">$100</label></td>
+                            
+                                <td><button class="btn btn-dark w-50">View</button></td>
+                    </tr>
+            }
+        </table>
+</div>

@@ -1,3 +1,3 @@
 ﻿<Project>
-  <Import Project="../build/Nidhinanban.props" />
+  <Import Project="..\build\Nidhinanban.props" />
 </Project>

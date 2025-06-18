@@ -9,7 +9,7 @@ namespace Nidhinanban.LogicClasses
 {
     public class Intrest
     {
-        public async Task<DataTable> getWeekbasedInterestData(float no_of_weeks, float no_of_months, string interestrate, string principleamount, string type)
+        public async Task<DataTable> getWeekbasedInterestData(float tenure ,string interestrate, string principleamount, string type)
         {
             List<string> weeksdatas = new List<string>();
             DateTime startingdate = DateTime.Now;
@@ -19,7 +19,7 @@ namespace Nidhinanban.LogicClasses
                 {
                         float interestratePercent = float.TryParse(interestrate, out float ir) ? ir : 0f;
                         float principal = float.TryParse(principleamount, out float pa) ? pa : 0f;
-                        float numberOfWeeks = no_of_weeks;
+                        float numberOfWeeks = tenure;
 
                         float totalInterest = (principal * interestratePercent * numberOfWeeks) / (100 * 52); // simple weekly interest
                         totalInterest = (float)Math.Round(totalInterest, 2);
@@ -66,32 +66,69 @@ namespace Nidhinanban.LogicClasses
                     });
 
             }
-            else if (type == "month" )
+            else if (type == "month")
             {
                 await Task.Run(() =>
                 {
-                    float numberofmonths = no_of_months;
-                    float interestamount = 0f;
-                    float interestrates = 0f;
-                    interestrates = float.TryParse(interestrate, out interestamount) ? interestamount : 0;
-                    float totalamount = 0f;
-                    float principleamounts = 0f;
-                    //getting principleamount
-                    principleamounts = float.TryParse(principleamount, out principleamounts) ? principleamounts : 0;
+                    float numberOfMonths = tenure;
 
-                    float monthlypayamount = principleamounts / numberofmonths;
+                    // Parse interest rate
+                    float interestRate = float.TryParse(interestrate, out float parsedInterestRate) ? parsedInterestRate : 0f;
 
-                    float monthlyintrestamount = monthlypayamount * interestrates / 100;
+                    // Parse principal amount
+                    float principalAmount = float.TryParse(principleamount, out float parsedPrincipal) ? parsedPrincipal : 0f;
 
-                    totalamount = monthlypayamount + monthlyintrestamount;
-                    for (int i = 1; i <= numberofmonths; i++)
+                    // Monthly principal payment
+                    float monthlyPrincipal = principalAmount / numberOfMonths;
+
+                    // Monthly interest amount (flat)
+                    float monthlyInterest = principalAmount * interestRate / 100f;
+
+                    // Total monthly payment
+                    float monthlyTotal = monthlyPrincipal + monthlyInterest;
+
+                    for (int i = 1; i <= numberOfMonths; i++)
                     {
-                        DateTime enddate = startingdate.AddMonths(i);
-                        weeksdatas.Add(i + "|" + enddate.ToString("dd-MM-yyyy") + "|" + interestrate + "|" + monthlyintrestamount + "|" + monthlypayamount + "|" + totalamount);
+                        DateTime paymentDate = startingdate.AddMonths(i);
+                        weeksdatas.Add($"{i}|{paymentDate:dd-MM-yyyy}|{interestRate}|{monthlyInterest}|{monthlyPrincipal}|{monthlyTotal}");
                     }
                 });
             }
-            DataTable table = new DataTable();
+            else if (type == "year")
+            {
+                     await Task.Run(() =>
+                    {
+                            float numberOfYears = tenure;
+                            // Parse interest rate
+                            float interestRate = float.TryParse(interestrate, out float parsedInterestRate) ? parsedInterestRate : 0f;
+                            // Parse principal amount
+                            float principalAmount = float.TryParse(principleamount, out float parsedPrincipal) ? parsedPrincipal : 0f;
+                             // Full years only
+                            int fullYears = (int)Math.Floor(numberOfYears);
+                            float remainingFraction = numberOfYears - fullYears;
+                            // Yearly principal payment
+                            float yearlyPrincipal = principalAmount / numberOfYears;
+                            for (int i = 1; i <= fullYears; i++)
+                            {
+                                    float yearlyInterest = principalAmount * interestRate / 100f;
+                                    float yearlyTotal = yearlyPrincipal + yearlyInterest;
+                                    DateTime paymentDate = startingdate.AddYears(i);
+                                    weeksdatas.Add($"{i}|{paymentDate:dd-MM-yyyy}|{interestRate}|{yearlyInterest}|{yearlyPrincipal}|{yearlyTotal}");
+                            }
+                            // Handle remaining partial year (e.g., 0.5 year)
+                            if (remainingFraction > 0)
+                            {
+                                    float partialPrincipal = yearlyPrincipal * remainingFraction;
+                                    float partialInterest = principalAmount * interestRate / 100f * remainingFraction;
+                                    float partialTotal = partialPrincipal + partialInterest;
+                                    DateTime partialDate = startingdate.AddYears(fullYears).AddMonths((int)(remainingFraction * 12));
+                                    weeksdatas.Add($"{fullYears + 1}|{partialDate:dd-MM-yyyy}|{interestRate}|{partialInterest}|{partialPrincipal}|{partialTotal}");
+                         }
+                    });
+            }
+
+
+    DataTable table = new DataTable();
     table.Columns.Add("WeekOrMonth", typeof(int));
     table.Columns.Add("Date", typeof(string));
     table.Columns.Add("InterestRate", typeof(float));

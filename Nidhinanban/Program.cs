@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Immutable;
+using Nidhinanban.LogicClasses;
 using Nidhinanban.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<InterestService>();
 builder.Services.AddTransient<AddCustomerService>();
 builder.Services.AddTransient<ViewCustomerService>();
+builder.Services.AddSingleton<ImageManipulation>();
+builder.Services.AddScoped<AddCustomerService>();
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddHttpClient();
 //use this if https is not working means

@@ -3,7 +3,7 @@
 @if (Model.showdiv)
 {
     
-    <div class="card col-lg-10 my-2 mx-auto  border border-10 shadow p-3">
+    <div class="card col-sm-8 col-md-8 col-lg-8 my-2 mx-auto  border border-10 shadow p-3">
         <h3 class="mx-5 mt-3 pill">Interest Calculation Results</h3>
 
         <div class="container my-4">
@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <div class="mt-5 card rounded col-lg-10 mx-auto border border-10 shadow p-3 table-responsive">
+    <div class="mt-5 card rounded col-lg-8 mx-auto border border-10 shadow p-3 table-responsive">
         <div class="d-flex justify-content-end flex-grow-1">
             
                 <form asp-controller="Intrest" asp-action="ExportExcel" method="get">
@@ -72,7 +72,10 @@
     <script>
        
        $('dcoument').ready(function(){$('#interestTable').DataTable();})
-       const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+      if (typeof tooltipList === 'undefined') {
+                const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+                const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+        }
+
     </script>
 }

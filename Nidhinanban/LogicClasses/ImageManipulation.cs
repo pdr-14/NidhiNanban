@@ -6,6 +6,12 @@ namespace Nidhinanban.LogicClasses
 {
     public class ImageManipulation
     {
+        private readonly IWebHostEnvironment _env;
+        public ImageManipulation(IWebHostEnvironment environment)
+        {
+            _env = environment;
+        }
+    
         public string ConvertBlobToBase64Image(byte[] blobData, string mimeType = "image/png")
         {
             if (blobData == null || blobData.Length == 0)
@@ -35,33 +41,38 @@ namespace Nidhinanban.LogicClasses
 
         public async Task StoreImageToTheServer(string CustomerID, IFormFile ImageData, string type)
         {
+            Console.WriteLine("In the Store Image Function");
                 using var memoryStream = new MemoryStream();
                 await ImageData.CopyToAsync(memoryStream);
                 memoryStream.Position = 0;
             using var image = new MagickImage(memoryStream);
-            if (Directory.Exists("Customer_Images"))
+            string folderPath = Path.Combine(_env.WebRootPath, "Customer_Images");
+            Console.WriteLine(folderPath);
+            if (Directory.Exists(folderPath))
             {
-                string path = Path.Combine("Customer_Images", CustomerID);
+
+                string path = Path.Combine(folderPath, CustomerID);
+                Console.WriteLine(path);
                 Directory.CreateDirectory(path);
                 var filename = CustomerID + type + "Image.jpg";
                 var filepath = Path.Combine(path, filename);
-                if(type=="Profile")
+                if (type == "Profile")
                 {
-                    image.Resize(400,400);
+                    image.Resize(400, 400);
                 }
                 image.Quality = 75;
                 await image.WriteAsync(filepath);
             }
             else
             {
-                Directory.CreateDirectory("Customer_Images");
-                string path = Path.Combine("Customer_Images", CustomerID);
+                string path = Path.Combine(folderPath, CustomerID);
+                Console.WriteLine(path);
                 Directory.CreateDirectory(path);
                 var filename = CustomerID + type + "Image.jpg";
                 var filepath = Path.Combine(path, filename);
-                if(type=="Profile")
+                if (type == "Profile")
                 {
-                    image.Resize(400,400);
+                    image.Resize(400, 400);
                 }
                 image.Quality = 75;
                 await image.WriteAsync(filepath);

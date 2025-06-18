@@ -20,7 +20,7 @@
         <form asp-controller="Intrest" astp-action="Intrestcalc" id="insertform" method="post"
             hx-post="/Intrest/Intrestcalc" hx-target="#hiddencontainer" hx-swap="innerHTML">
              @Html.ValidationSummary(true, "", new { @class = "text-danger mx-2 my-2" })
-            <div class="card col-10 my-5 mx-auto border border-10 shadow p-3">
+            <div class="card col-8 my-5 mx-auto border border-10 shadow p-3">
                 <h3 class="mx-auto my-2">Interest Calculator</h3>
 
                 <div class="container my-4">
@@ -41,23 +41,10 @@
 
                     <div class="row mt-5">
                         <div class="col-sm-12 col-md-6  col-lg-6">
-                            <h6 class="mx-2">Time Period (Months)</h6>
-                            <input asp-for="month" class="form-control mx-2" id="month"
-                                oninput="convert_month_to_year()" placeholder="Enter time in Months" />
+                            <h6 class="mx-2">Tenure</h6>
+                            <input asp-for="tenure" class="form-control mx-2" id="month" placeholder="Enter time in Months" />
                         </div>
-                        <div class="col-sm-12 col-md-6  col-lg-6">
-                            <h6 class="mx-2">Time Period (Years)</h6>
-                            <input asp-for="year" class="form-control mx-1" id="year" oninput="convert_year_to_month()"
-                                placeholder="Enter time in years" />
-                        </div>
-                    </div>
-
-                    <div class="row mt-5">
-                        <div class="col-sm-12 col-md-6  col-lg-6">
-                            <h6 class="mx-2">Time Period (Weeks) </h6>
-                            <input id="weeks" asp-for="week" placeholder="Enter time in weeks"
-                                class="form-control mx-1">
-                        </div>
+                        
                         <div class="col-sm-12 col-md-6  col-lg-6">
                             <h6 class="mx-2">Select type</h6>
                             <select class="form-control" asp-for="type">
@@ -67,7 +54,6 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="row col-10 mx-auto">
                         <button type="submit" class="btn btn-dark my-3 mt-5">Calculate Interest</button>
                     </div>

@@ -24,8 +24,9 @@
         <div>
           <div class="card mx-auto col-sm-10 col-md-6 col-lg-4 my-5 mx-auto border border-5 shadow p-3">
                 <div class="card-header">
-                        <div class="d-flex justify-content-center"><h3 class="">View Customer</h3></div>
-                </div>                
+                <h3>Search Customer</h3>
+                
+            </div>                
                 <div class="card-body">
                         <div class="my-3">
                             <label class="text-warp ">Enter The Customer ID</label>
@@ -43,7 +44,9 @@
             {
                 <div class="col">
                     <div class="card  animate__animated animate__slideInUp">
-                        <img src="/img/trailimage.png" class="profile-image" />
+                        @{string imgsrc=@customer.customerid+"ProfileImage.jpg";}
+                        <img src="@($"../Customer_Images/{customer.customerid}/{imgsrc}")" class="profile-image" />
+
                         <div class="card-body">
                             <div class="d-flex justify-content-center mx-auto">
                                 <h4 class="card-title">@customer.customername</h4>
@@ -57,7 +60,9 @@
                                 <label class="text-danger">$100</label>
                             </div>
                             <div class=" my-3 mt-4 d-flex flex-wrap justify-content-evenly gap-2">
-                                <button class="btn btn-dark w-50">View</button>
+                                
+                                    <button class="btn btn-dark w-50" onclick="redirectToCustomer('@customer.customerid')">View</button>
+                                
                             </div>
                         </div>
                     </div>
@@ -66,3 +71,8 @@
 
         </div>
 </div>
+<script>
+function redirectToCustomer(id) {
+    window.location.href = "/Customer/CustomerDetails?id=" + id;
+}
+</script>

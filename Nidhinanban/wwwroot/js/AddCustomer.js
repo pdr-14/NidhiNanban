@@ -2,6 +2,11 @@
     var house=document.getElementById('housePic');
     var pan=document.getElementById('panPic');
     var aadhaar=document.getElementById('aadhaarPic');
+    $("document").ready(function(){
+        document.getElementById("hiddenidvalue").value=document.getElementById("id").innerHTML;
+        
+    });
+
     let camera=null;
     function snap(Cameraholder, camera, container) {
     document.getElementById(Cameraholder).style = "display: block;";

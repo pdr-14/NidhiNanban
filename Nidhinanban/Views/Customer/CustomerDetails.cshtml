@@ -1,0 +1,94 @@
+@model List<ViewCustomer>
+@{
+    ViewData["Title"] = "CustomerDetails";
+}
+<div>
+    <a class="btn btn-outline-light text-black border rounded-circle " asp-controller="Customer" asp-action="ViewCustomer">
+        <img width="25" height="30"  src="https://img.icons8.com/plumpy/50/back.png" alt="back"/>
+    </a>
+
+    <div class="card col-10 mx-auto">
+        <div class="card-header">
+            <div class="d-flex justify-content-center">
+                <h3 class="fw-bolder text-uppercase">Customer Details</h3>
+            </div>
+        </div>
+        <div class="card-body">
+
+            @* Name And Image Section *@
+            <div class="row align-items-center">
+                <!-- Image Column -->
+                <div class="col-sm-12 col-md-6 text-center mb-3 mb-md-0">
+                    <img src="../img/trailimage.png" style="height:120px; max-height: 120px; object-fit: fit;"
+                        class="img-fluid rounded">
+                </div>
+                <!-- Text Column -->
+                <div class="col-sm-12 col-md-6 ">
+
+                    <div class="mb-3 d-flex justify-content-center">
+                        <label>Name:</label><label>@Model[0].customername</label></div>
+                </div>
+            </div>
+
+            @* Phone Number And Address Section *@
+            <div class="row align-content-center mt-sm-2 mt-lg-2">
+                <div class="col-sm-12 col-md-6 col-lg-6 justify-content-center ">
+                    <div class="mb-3 d-flex justify-content-center"><label class=" ">Phone
+                            Number:</label><label>@Model[0].cutomerphonenumber</label></div>
+                </div>
+                <div class="col-sm-12 col-md-6 ">
+
+                    <div class="mb-3 d-flex justify-content-center">
+                        <label>Address:</label><label>@Model[0].customeraddress</label></div>
+                </div>
+
+            </div>
+
+            @* House Image Section *@
+            <div class="row mt-sm-2 mt-lg-3 ">
+                <hr />
+                <h3 class="text-center text-uppercase text-black fw-bolder ">House Image</h3>
+                <hr />
+                <div class="d-flex justify-content-center">
+                    <img class="img-fluid" style="height:200px; max-height: 200px; object-fit: fit;"
+                        src="@($"../Customer_Images/{@Model[0].customerid}/{@Model[0].customerid + "HouseImage.jpg"}")" />
+                </div>
+            </div>
+
+            @* Proff Image Section *@
+            <div class="row mt-sm-2 mt-lg-3 ">
+                <hr />
+                <h3 class="text-center text-uppercase fw-bolder">Proff Images</h3>
+                <hr />
+                <div class="row mt-sm-2 mt-md-5 mt-lg-5 ">
+                    <!-- PAN Picture -->
+                    <div class="col-sm-12 col-md-6 col-lg-6 d-flex-row justify-content-center">
+                        <label>PAN Picture</label>
+                        <div style="">
+                            <img id="panPic" class="img-fluid w-100 img-thumbnail "
+                                style="height:200px; max-height: 200px; object-fit: fit;"
+                                src="@($"../Customer_Images/{@Model[0].customerid}/{@Model[0].customerid + "PanCardImage.jpg"}")"
+                                onclick="openCamera('panPic')" />
+                        </div>
+
+                    </div>
+
+                    <!-- Aadhaar Picture -->
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <label>Aadhaar Picture</label>
+                        <div class="">
+                            <img id="aadhaarPic" class="img-fluid img-thumbnail w-100"
+                                style="height:200px;max-height: 200px; object-fit: fit;"
+                                src="@($"../Customer_Images/{@Model[0].customerid}/{@Model[0].customerid + "AadhaarImage.jpg"}")" />
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>

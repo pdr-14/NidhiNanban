@@ -32,9 +32,7 @@ namespace Nidhinanban.Controllers
                 LogicClasses.Intrest intrest=new LogicClasses.Intrest();
                 float principleamount=interestModel.principleamount;
                 float interestrate=interestModel.interestrate;
-                float year=interestModel.year;
-                float month=interestModel.month;
-                float week=interestModel.week;
+                float tenure=interestModel.tenure;
                 string type=interestModel.type;
                 if(principleamount!=0)
                 {
@@ -47,11 +45,11 @@ namespace Nidhinanban.Controllers
                 {
                     interestrate=1;
                 }
-                var status= await _interestService.calculateinterest(principleamount,interestrate,year,month,week,type);
+                var status= await _interestService.calculateinterest(principleamount,interestrate,tenure,type);
                 interestModel.principleamountstring=status.principleamount;
                 interestModel.intrestamount=status.interestamount;
                 interestModel.totalamount=status.totalamount;
-                interestModel.dt=await intrest.getWeekbasedInterestData(week,month,interestrate.ToString(),principleamount.ToString(),type);
+                interestModel.dt=await intrest.getWeekbasedInterestData(tenure,interestrate.ToString(),principleamount.ToString(),type);
                 TempData["ScheduleData"] = JsonConvert.SerializeObject(interestModel.dt);
                 TempData["IntrestAmount"]=JsonConvert.SerializeObject(status.interestamount);
                 TempData["Principleamount"]=JsonConvert.SerializeObject(status.principleamount);

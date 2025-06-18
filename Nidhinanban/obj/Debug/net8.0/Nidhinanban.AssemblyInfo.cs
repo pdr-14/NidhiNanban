@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Nidhinanban")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+55e55f88851cfcc71236533729858468c3d81052")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+28d6aea2151430f33c30e9bb0c6e51e2ae3950bc")]
 [assembly: System.Reflection.AssemblyProductAttribute("Nidhinanban")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Nidhinanban")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

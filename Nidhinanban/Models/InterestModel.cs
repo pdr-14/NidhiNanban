@@ -10,10 +10,7 @@ public class InterestModel{
     [Required(ErrorMessage = "Interest Rate is required")]
     [Range(0.1, 100, ErrorMessage = "Enter a valid interest rate between 0.1 and 100")]
     public float interestrate{get; set;}
-    public float year{get; set;}
-    public float month{get; set;}
-
-    public float week{get; set;}
+    public float tenure {get; set;}
     public  bool showdiv{get; set;}=false;
 
     public string? intrestamount{get; set;}=string.Empty;
