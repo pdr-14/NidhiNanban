@@ -7,6 +7,14 @@
         <img width="25" height="30"  src="https://img.icons8.com/plumpy/50/back.png" alt="back"/>
     </a>
 
+    <div class="modal" id="Profilemodal">
+        <div class="modal-dailog">
+            <div class="model-content">
+                <h3>Hello</h3>
+            </div>
+        </div>
+    </div>
+
     <div class="card col-10 mx-auto">
         <div class="card-header">
             <div class="d-flex justify-content-center">
@@ -14,13 +22,11 @@
             </div>
         </div>
         <div class="card-body">
-
             @* Name And Image Section *@
             <div class="row align-items-center">
                 <!-- Image Column -->
                 <div class="col-sm-12 col-md-6 text-center mb-3 mb-md-0">
-                    <img src="../img/trailimage.png" style="height:120px; max-height: 120px; object-fit: fit;"
-                        class="img-fluid rounded">
+                    <img src="/getimg/GetImageProxy/@Model[0].customerid/profile" style="height:120px; max-height: 120px; object-fit: cover; border-radius: 50%;" class="rounded"/>
                 </div>
                 <!-- Text Column -->
                 <div class="col-sm-12 col-md-6 ">
@@ -51,7 +57,7 @@
                 <hr />
                 <div class="d-flex justify-content-center">
                     <img class="img-fluid" style="height:200px; max-height: 200px; object-fit: fit;"
-                        src="@($"../Customer_Images/{@Model[0].customerid}/{@Model[0].customerid + "HouseImage.jpg"}")" />
+                        src="/getimg/GetImageProxy/@Model[0].customerid/house" data-bs-toogle="Profilemodal" />
                 </div>
             </div>
 
@@ -67,8 +73,7 @@
                         <div style="">
                             <img id="panPic" class="img-fluid w-100 img-thumbnail "
                                 style="height:200px; max-height: 200px; object-fit: fit;"
-                                src="@($"../Customer_Images/{@Model[0].customerid}/{@Model[0].customerid + "PanCardImage.jpg"}")"
-                                onclick="openCamera('panPic')" />
+                                src="/getimg/GetImageProxy/@Model[0].customerid/pan")" />
                         </div>
 
                     </div>
@@ -79,7 +84,7 @@
                         <div class="">
                             <img id="aadhaarPic" class="img-fluid img-thumbnail w-100"
                                 style="height:200px;max-height: 200px; object-fit: fit;"
-                                src="@($"../Customer_Images/{@Model[0].customerid}/{@Model[0].customerid + "AadhaarImage.jpg"}")" />
+                                src="/getimg/GetImageProxy/@Model[0].customerid/aadhar" />
                         </div>
                     </div>
                 </div>

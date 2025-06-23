@@ -6,9 +6,11 @@ using Nidhinanban.Models;
 using Nidhinanban.Services;
 using System.Data;
 using DocumentFormat.OpenXml.Drawing.Charts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Nidhinanban.Api.Controllers
 {
+    
     [ApiController]
     [Route("View/[controller]")]
     public class ViewCustomerController : ControllerBase
@@ -20,16 +22,25 @@ namespace Nidhinanban.Api.Controllers
             _customerService = customer;
         }
         [HttpGet("getall")]
+        [Authorize]
         public async Task<ActionResult<List<ViewCustomer>>> GetAll()
         {
-            var n = await _customerService.getallcustomer();
-            if (n.Count == 0)
+            try
             {
-                return BadRequest("No customers found");
+                var n = await _customerService.getallcustomer();
+                if (n.Count == 0)
+                {
+                    return BadRequest("No customers found");
+                }
+                return Ok(n);
             }
-            return Ok(n);
+            catch (Exception ex)
+            {
+                return Unauthorized(ex.Message);
+            }
         }
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult> GetCustomerByID(string id)
         {
             var details = await _customerService.getCustomerById(id);

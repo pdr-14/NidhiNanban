@@ -1,0 +1,106 @@
+@model LoginDataModel
+@{
+    Layout = null;
+}
+@addTagHelper  *, Microsoft.AspNetCore.Mvc.TagHelpers
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nidhinanban Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:wght@500&display=swap"
+        rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        body {
+            background-image: url("../img/loginbg.jpg");
+            background-repeat: no-repeat;
+            background-size: cover, contain;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            height: 100vh;
+        }
+
+        .blur {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+
+        }
+    </style>
+
+
+
+</head>
+
+
+<body>
+    <div  class=" bg-dark bg-opacity-75">
+        <section class="container-fluid">
+            <div class="d-flex align-items-center justify-content-around vh-100">
+                <div class="card col-sm-10 col-md-7 col-lg-5 col-xl-4  mx-auto shadow-lg border rounded-3 animate__animated animate__slideInUp">
+                    <h2 class="text-center fw-bold mt-4 mx-4">Welcome To Nidhinanban</h2>
+                    <div class="card-body">
+                        @Html.ValidationSummary(true,"",new {@class="my-2 text-danger"})
+                        <form asp-controller="Signing" asp-action="SignIn" method="post">
+                            
+                            <div class="m-2 p-2 mx-5">
+                                <div class="form-floating">
+                                    <input type="text" asp-for=UserName class="form-control"
+                                        placeholder="Enter Your UserID" id="username" />
+                                    <label for="username">UserId</label>
+                                    <span class="my-2 text-danger" asp-validation-for=UserName></span>
+                                </div>
+                            </div>
+                            <div class="m-2 p-2 mx-5">
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" placeholder="Enter Your Password"
+                                        asp-for=Password id="password" />
+                                    <label class="mb-3" for="password">Password</label>
+                                    <span class="my-2 text-danger" asp-validation-for=Password></span>
+                                    <div class="float-end m-3 p-1">
+                                        <a class="text-decoration-none text-black " href="#">Forget Password?</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="m-4 px-5">
+                                <button class="btn btn-success w-100">Sign In</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </section>
+    </section>
+    </div>
+
+</body>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js">
+</script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.esm.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js"
+    integrity="sha512-KFHXdr2oObHKI9w4Hv1XPKc898mE4kgYx58oqsc/JqqdLMDI4YjOLzom+EMlW8HFUd0QfjfAvxSL6sEq/a42fQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js"
+    integrity="sha512-xq+Vm8jC94ynOikewaQXMEkJIOBp7iArs3IhFWSWdRT3Pq8wFz46p+ZDFAR7kHnSFf+zUv52B3prRYnbDRdgog=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://unpkg.com/htmx.org@1.9.2"></script>
+<script src="//cdn.datatables.net/2.3.1/js/dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+
+
+
+</html>

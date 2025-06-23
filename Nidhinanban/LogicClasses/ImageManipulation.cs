@@ -22,23 +22,6 @@ namespace Nidhinanban.LogicClasses
         }
 
 
-        public  byte[] ConvertBase64ImageToBlob(string base64Data)
-        {
-            if (string.IsNullOrWhiteSpace(base64Data))
-            {
-                return null;
-            }
-                //throw new ArgumentException("Input Base64 string is null or empty.");
-
-            // Check if the string contains the metadata prefix
-            int commaIndex = base64Data.IndexOf(',');
-
-            string base64String = (commaIndex >= 0) ? base64Data.Substring(commaIndex + 1) : base64Data;
-
-            // Convert Base64 string to byte array
-            return Convert.FromBase64String(base64String);
-        }
-
         public async Task StoreImageToTheServer(string CustomerID, IFormFile ImageData, string type)
         {
             Console.WriteLine("In the Store Image Function");
@@ -46,7 +29,7 @@ namespace Nidhinanban.LogicClasses
                 await ImageData.CopyToAsync(memoryStream);
                 memoryStream.Position = 0;
             using var image = new MagickImage(memoryStream);
-            string folderPath = Path.Combine(_env.WebRootPath, "Customer_Images");
+            string folderPath = Path.Combine(_env.ContentRootPath, "Customer_Images");
             Console.WriteLine(folderPath);
             if (Directory.Exists(folderPath))
             {
@@ -60,7 +43,11 @@ namespace Nidhinanban.LogicClasses
                 {
                     image.Resize(400, 400);
                 }
-                image.Quality = 75;
+                else
+                {
+                    image.Resize(1280, 720);
+                }
+                image.Quality = 80;
                 await image.WriteAsync(filepath);
             }
             else

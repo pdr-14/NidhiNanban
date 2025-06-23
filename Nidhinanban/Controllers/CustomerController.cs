@@ -2,8 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using Nidhinanban.Services;
 using Nidhinanban.Models;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http.HttpResults;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
+using System.ComponentModel.DataAnnotations;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace Nidhinanban.Controllers
 {
@@ -12,8 +16,10 @@ namespace Nidhinanban.Controllers
 
         private readonly AddCustomerService _addCustomerService;
         private readonly HttpClient _httpClient;
+        
         public CustomerController(AddCustomerService addCustomerService, IHttpClientFactory httpClientFactory)
         {
+           
             _addCustomerService = addCustomerService;
             _httpClient = httpClientFactory.CreateClient();
             _httpClient.BaseAddress = new Uri("https://localhost:7065/");
@@ -61,19 +67,30 @@ namespace Nidhinanban.Controllers
         [HttpGet]
         public async Task<IActionResult> ViewCustomer()
         {
-            var response = await _httpClient.GetAsync("/View/ViewCustomer/getall");
-            if (!response.IsSuccessStatusCode) //check's the response code is success or not 
+            var jwttoken = Request.Cookies["token"]!;
+            if (!String.IsNullOrEmpty(jwttoken))
             {
-                ViewBag.Error = "No customers found";
-                return View(new List<ViewCustomer>());
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwttoken);
+                var response = await _httpClient.GetAsync("/View/ViewCustomer/getall");
+                if (!response.IsSuccessStatusCode) //check's the response code is success or not 
+                {
+                    ViewBag.Error = "No customers found";
+                    return View(new List<ViewCustomer>());
+                }
+                var data = await response.Content.ReadFromJsonAsync<List<ViewCustomer>>();
+                return View(data);
             }
-            var data = await response.Content.ReadFromJsonAsync<List<ViewCustomer>>();
-            return View(data);
+            else
+            {
+                return RedirectToAction("LoginIn", "Signing");
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> ViewCustomerlist()
         {
+            var jwttoken = Request.Cookies["token"];
+            _httpClient.DefaultRequestHeaders.Authorization=new AuthenticationHeaderValue("Bearer", jwttoken);
             var response = await _httpClient.GetAsync("/View/ViewCustomer/getall");
             if (!response.IsSuccessStatusCode) //check's the response code is success or not
             {
@@ -87,11 +104,13 @@ namespace Nidhinanban.Controllers
         [HttpGet]
         public async Task<IActionResult> CustomerDetails()
         {
+            var jwttoken = Request.Cookies["token"];
             string id = Request.Query["id"]!;
             if (!Request.Query.TryGetValue("id", out var idValue) || string.IsNullOrEmpty(idValue))
             {
                 return RedirectToAction("ViewCustomer");
             }
+            _httpClient.DefaultRequestHeaders.Authorization=new AuthenticationHeaderValue("Bearer", jwttoken);
             var response = await _httpClient.GetAsync($"/View/ViewCustomer/{id}");
             var customerdetail = await response.Content.ReadFromJsonAsync<List<ViewCustomer>>();
             if (customerdetail!.Count == 0)

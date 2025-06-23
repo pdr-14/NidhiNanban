@@ -5,38 +5,6 @@
       "PackagePath": "staticwebassets\\Nidhinanban.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\Customer_Images\\USER01\\USER01AadhaarImage.jpg",
-      "PackagePath": "staticwebassets\\Customer_Images\\USER01\\USER01AadhaarImage.jpg"
-    },
-    {
-      "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\Customer_Images\\USER01\\USER01HouseImage.jpg",
-      "PackagePath": "staticwebassets\\Customer_Images\\USER01\\USER01HouseImage.jpg"
-    },
-    {
-      "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\Customer_Images\\USER01\\USER01PanCardImage.jpg",
-      "PackagePath": "staticwebassets\\Customer_Images\\USER01\\USER01PanCardImage.jpg"
-    },
-    {
-      "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\Customer_Images\\USER01\\USER01ProfileImage.jpg",
-      "PackagePath": "staticwebassets\\Customer_Images\\USER01\\USER01ProfileImage.jpg"
-    },
-    {
-      "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\Customer_Images\\USER02\\USER02AadhaarImage.jpg",
-      "PackagePath": "staticwebassets\\Customer_Images\\USER02\\USER02AadhaarImage.jpg"
-    },
-    {
-      "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\Customer_Images\\USER02\\USER02HouseImage.jpg",
-      "PackagePath": "staticwebassets\\Customer_Images\\USER02\\USER02HouseImage.jpg"
-    },
-    {
-      "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\Customer_Images\\USER02\\USER02PanCardImage.jpg",
-      "PackagePath": "staticwebassets\\Customer_Images\\USER02\\USER02PanCardImage.jpg"
-    },
-    {
-      "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\Customer_Images\\USER02\\USER02ProfileImage.jpg",
-      "PackagePath": "staticwebassets\\Customer_Images\\USER02\\USER02ProfileImage.jpg"
-    },
-    {
       "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -63,6 +31,10 @@
     {
       "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\img\\house.png",
       "PackagePath": "staticwebassets\\img\\house.png"
+    },
+    {
+      "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\img\\loginbg.jpg",
+      "PackagePath": "staticwebassets\\img\\loginbg.jpg"
     },
     {
       "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\img\\profile.png",
