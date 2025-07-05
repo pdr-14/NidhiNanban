@@ -354,3 +354,9 @@ C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\obj\Debug\net8.0\refint
 C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\obj\Debug\net8.0\Nidhinanban.pdb
 C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\obj\Debug\net8.0\Nidhinanban.genruntimeconfig.cache
 C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\obj\Debug\net8.0\ref\Nidhinanban.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\QRCoder.Core.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\System.Drawing.Common.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Users\ngoku\OneDrive\Desktop\Nidhi Nanban\Nidhinanban\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
