@@ -1,4 +1,6 @@
 using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Nidhinanban.Models;
 
@@ -7,14 +9,26 @@ namespace Nidhinanban.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    private HttpClient _httpClient;
+    public HomeController(ILogger<HomeController> logger, IHttpClientFactory httpClientFactory)
     {
         _logger = logger;
+        _httpClient =httpClientFactory.CreateClient("https://localhost:7065");
     }
 
     public IActionResult Index()
     {
+        var token = Request.Cookies["token"];
+        if (String.IsNullOrEmpty(token))
+        {
+            return RedirectToAction("LoginIn", "Signing");
+        }
+        else
+        {
+            var JwtSecurityTokenHandler = new JwtSecurityTokenHandler();
+            var decrepttoken = JwtSecurityTokenHandler.ReadJwtToken(token);
+            LoggedInUserModel.UserName = decrepttoken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)!.Value;
+        }
         return View();
     }
 

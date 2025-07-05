@@ -21,6 +21,8 @@ public class LoginApiController : ControllerBase
         if (loginData.UserName == "admin" && loginData.Password == "admin")
         {
             var Token = GenerateJWTToken(loginData.UserName);
+            LoggedInUserModel.UserName = User.FindFirstValue(ClaimTypes.Name)!;
+            
             return Ok(Token);
         }
         else

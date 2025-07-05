@@ -1,6 +1,8 @@
 @model List<ViewCustomer>
 @{
     ViewData["Title"]="View Customer";
+    int totalcount=Convert.ToInt32(ViewData["TotalCount"]);
+    int currentPage=ViewBag.CurrentPage ;
 }
 <head>
   <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"  />
@@ -16,24 +18,27 @@
         margin: 10px auto;
     }
 </style>
-
 <div>
 <a class="btn btn-outline-light text-black border border-10" asp-controller="Home" asp-action="Index">
             <img width="25" height="25" src="https://img.icons8.com/plumpy/50/back.png" alt="back"  /> Back To Dashboard
         </a>
         <div>
-          <div class="card mx-auto col-sm-10 col-md-6 col-lg-4 my-5 mx-auto border border-5 shadow p-3">
+          <div class="custom-bg mx-auto col-sm-8 col-md-6 col-lg-4 my-5 mx-auto  shadow p-3">
                 <div class="card-header">
                 <h3>Search Customer</h3>
                 
             </div>                
                 <div class="card-body">
                         <div class="my-3">
-                            <label class="text-warp ">Enter The Customer ID</label>
-                            <input class="form-control my-2 " type="text" placeholder="Enter the Customer ID to search"/>
-                            <div class="d-flex justify-content-center">
-                                    <button class="btn btn-dark mt-3 w-75 boder border-5 ">Search Customer</button>
-                            </div>
+                            <form asp-controller="Customer" asp-action="SearchCustomer" method="post">
+                                <input type="hidden" name="pagenumber" value="@currentPage" />
+                                <label class="text-warp ">Enter The Customer ID</label>
+                                <input class="form-control my-2 " type="text" placeholder="Enter the Customer ID to search" name="CustomerId" id="Useridtxtbox" value="@(Model.Count==1?Model[0].customerid:"")" />
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-dark mt-3 w-75 boder border-5">Search Customer</button>
+                                </div>
+                            </form>
+                            
                         </div>
                 </div>
           </div>
@@ -43,8 +48,8 @@
             @foreach (var customer in Model)
             {
                 <div class="col">
-                    <div class="card  animate__animated animate__slideInUp">
-                        <img src="/getimg/GetImageProxy/@customer.customerid/profile" style="height:120px; max-height: 120px; object-fit: contain; border-radius: 50%;" class="img-tumbnail img-fluid rounded mt-3" />
+                    <div class="custom-bg animate__animated animate__slideInUp">
+                        @* <img src="/getimg/GetImageProxy/@customer.customerid/profile" style="height:120px; max-height: 120px; object-fit: contain; border-radius: 50%;" class="img-tumbnail img-fluid rounded mt-3" /> *@
 
                         <div class="card-body">
                             <div class="d-flex justify-content-center mx-auto">
@@ -58,7 +63,7 @@
                                 <label>Intreset Amount</label>
                                 <label class="text-danger">$100</label>
                             </div>
-                            <div class=" my-3 mt-4 d-flex flex-wrap justify-content-evenly gap-2">
+                            <div class="my-3 mt-4 d-flex flex-wrap justify-content-evenly gap-2">
                                 
                                     <button class="btn btn-dark w-50" onclick="redirectToCustomer('@customer.customerid')">View</button>
                                 
@@ -68,10 +73,41 @@
                 </div>
             }
 
+        </div>  
+       <div class="bg-light bg-opacity-50 mt-4 rounded rounded-pill shadow" style="display: @(totalcount>1?"block":"none");">
+        <ul class="pagination justify-content-around mt-5">
+            <li class="page-item">
+                @{
+                    var previouspage=currentPage>1?currentPage-1:1;
+                    var nextpage=currentPage<totalcount?currentPage+1:totalcount;
+                }
+                <li class="page-item  @(currentPage == 1 ? "disabled" : "")">
+                <a class="page-link bg-transparent border-0 @(currentPage != 1?"active":"")" href="@Url.Action("ViewCustomer","Customer",new {pagenumber=previouspage})">Previous</a>
+                </li>
+                @* Displaying page numbers *@
+                @for (int i = 1; i <= totalcount; i++)
+                {
+                    <li class="page-item @(currentPage == i ? "active bg-primary " : "")">
+                        <a class="page-link bg-transparent border-0" href="@Url.Action("ViewCustomer","Customer",new {pagenumber=i})">@i</a>
+                    </li>
+                }
+                <li class="page-item @(currentPage == totalcount ? "disabled" : "")">
+                <a class="page-link bg-transparent border-0 @(currentPage == totalcount ? "active" : "")" href="@Url.Action("ViewCustomer","Customer",new {pagenumber=nextpage})">Next</a>
+                </li>
+        </ul>
         </div>
 </div>
 <script>
 function redirectToCustomer(id) {
     window.location.href = "/Customer/CustomerDetails?id=" + id;
 }
+function search(id)
+{
+    window.location.href ="/Customer/CustomerDetails?id="+id;
+}
+if(performance.navigation.type===1)
+{
+    window.location.href="/Customer/ViewCustomer";
+}
+sessionStorage.setItem("ViewType","Grid");
 </script>

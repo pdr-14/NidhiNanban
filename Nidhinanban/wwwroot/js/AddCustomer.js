@@ -142,3 +142,8 @@ uploadaadhaarBtn.addEventListener('change', (e) => {
         document.getElementById('panPic').src="../img/Pan-Card.png";
         document.getElementById('profilePic').src="../img/profile.png";
     }
+
+    function register()
+    {
+        sessionStorage.setItem("type","register");   
+    }

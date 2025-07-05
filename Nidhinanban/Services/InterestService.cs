@@ -1,4 +1,6 @@
 using Microsoft.Extensions.Diagnostics;
+using MySqlConnector;
+using System.Data;
 
 
 namespace Nidhinanban.Services
@@ -17,25 +19,60 @@ namespace Nidhinanban.Services
                 {
                     interestamounts = (float)Math.Round(principleamount * interest * tenure / (100 * 52), 2);
                     totalamounts = (float)Math.Round(principleamounts + interestamounts, 2);
-                   // return ("₹" + principleamounts, "₹" + interestamounts, "₹" + totalamounts, datas);
+                    // return ("₹" + principleamounts, "₹" + interestamounts, "₹" + totalamounts, datas);
                 }
                 else if (type.ToLower() == "month")
                 {
-                    float singlemonthamount=principleamount/tenure;
-                    interestamounts = (float)Math.Round((principleamount * interest *tenure  / 100), 2);
-                    totalamounts = (float)Math.Round((principleamount + interestamounts), 2);
-                    
+                    float singlemonthamount = principleamount / tenure;
+                    interestamounts = (float)Math.Round(principleamount * interest * tenure / 100, 2);
+                    totalamounts = (float)Math.Round(principleamount + interestamounts, 2);
+
                     //return ("₹" + principleamounts, "₹" + interestamounts*month, "₹" + totalamounts, datas);
                 }
                 else if (type.ToLower() == "year")
                 {
                     interestamounts = (float)Math.Round(principleamount * interest * tenure / 100, 2);
                     totalamounts = (float)Math.Round(principleamounts + interestamounts, 2);
-                   // return ("₹" + principleamounts, "₹" + interestamounts, "₹" + totalamounts, datas);
+                    // return ("₹" + principleamounts, "₹" + interestamounts, "₹" + totalamounts, datas);
                 }
-                
+
             });
             return ("₹" + principleamounts, "₹" + interestamounts, "₹" + totalamounts, datas);
+        }
+    }
+    
+    public class SaveIntoInterestTableservice
+    {
+        private readonly IConfigurationManager _configurationManager;
+        public SaveIntoInterestTableservice(IConfigurationManager configurationManager)
+        {
+            _configurationManager = configurationManager;
+        }
+        public async Task<string> InsertintoTable(DataTable dataTable)
+        {
+
+            string connectionstring = _configurationManager.GetConnectionString("Default Connection")!;
+            MySqlConnection connection = new MySqlConnection(connectionstring);
+            MySqlCommand command = new MySqlCommand();
+            string s = "";
+            try
+            {
+                await connection.OpenAsync();
+                command.Connection = connection;
+                foreach (DataRow dataRowrow in dataTable.Rows)
+                {
+                    Console.WriteLine(dataRowrow[0].ToString());
+                }
+            }
+            catch (MySqlException ex)
+            {
+                s = ex.Message;
+            }
+            finally
+            {
+                await connection.CloseAsync();
+            }
+            return s;
         }
     }
 }

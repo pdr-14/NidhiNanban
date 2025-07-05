@@ -18,8 +18,13 @@ namespace Nidhinanban.Services
 
 
 
-        public async Task<List<ViewCustomer>> getallcustomer()
+        public async Task<List<ViewCustomer>> getallcustomer(int pagenumber = 0)
         {
+            if (connectionstring == null)
+            {
+                throw new Exception("Connection string is not set.");
+            }
+
             MySqlConnection connection = new MySqlConnection(connectionstring);
             MySqlCommand commandstring = new MySqlCommand();
             var customerslist = new List<ViewCustomer>();
@@ -27,7 +32,11 @@ namespace Nidhinanban.Services
             {
                 await connection.OpenAsync();
                 commandstring.Connection = connection;
-                commandstring.CommandText = "select * from CUSTOMER limit 12 offset 0";
+                commandstring.Parameters.Clear();
+
+                commandstring.CommandText = @"select * from CUSTOMER limit @limit offset @pagenumber";
+                commandstring.Parameters.AddWithValue("@limit", 12);
+                commandstring.Parameters.AddWithValue("@pagenumber", 12 * (pagenumber - 1));
                 MySqlDataReader dr = await commandstring.ExecuteReaderAsync();
                 if (dr.HasRows)
                 {
@@ -56,7 +65,6 @@ namespace Nidhinanban.Services
 
         public async Task<List<ViewCustomer>> getCustomerById(string id)
         {
-            Console.WriteLine(connectionstring);
             MySqlConnection connection = new MySqlConnection(connectionstring);
             MySqlCommand commandstring = new MySqlCommand();
             var customerslist = new List<ViewCustomer>();
@@ -92,6 +100,37 @@ namespace Nidhinanban.Services
                 await connection.CloseAsync();
             }
             return customerslist;
+        }
+
+        public async Task<int> Totalcount()
+        {
+            int Count = 0;
+            MySqlConnection connection = new MySqlConnection(connectionstring);
+            MySqlCommand commandstring = new MySqlCommand();
+            var customerslist = new List<ViewCustomer>();
+            try
+            {
+                await connection.CloseAsync();
+                await connection.OpenAsync();
+                commandstring.Connection = connection;
+                commandstring.CommandText = "select count(*) from CUSTOMER";
+                MySqlDataReader countreader = await commandstring.ExecuteReaderAsync();
+                if (countreader.HasRows)
+                {
+                    countreader.Read();
+                    Count = Convert.ToInt32(countreader[0].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                await connection.CloseAsync();
+            }
+            return Count;
+
         }
 
     }

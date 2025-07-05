@@ -19,41 +19,29 @@
         rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style>
-        body {
-            background-image: url("../img/loginbg.jpg");
-            background-repeat: no-repeat;
-            background-size: cover, contain;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            height: 100vh;
-        }
-
-        .blur {
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-
+        .blur{
+            backdrop-filter: blur(5px);
+            box-shadow: black 10px,100px;
         }
     </style>
-
-
-
 </head>
 
-
 <body>
-    <div  class=" bg-dark bg-opacity-75">
+    <div id="background_div">
         <section class="container-fluid">
             <div class="d-flex align-items-center justify-content-around vh-100">
-                <div class="card col-sm-10 col-md-7 col-lg-5 col-xl-4  mx-auto shadow-lg border rounded-3 animate__animated animate__slideInUp">
+                <div class="bg-white bg-opacity-50  col-sm-10 col-md-7 col-lg-5 col-xl-4 blur  mx-auto   rounded-3 animate__animated animate__slideInUp">
                     <h2 class="text-center fw-bold mt-4 mx-4">Welcome To Nidhinanban</h2>
                     <div class="card-body">
                         @Html.ValidationSummary(true,"",new {@class="my-2 text-danger"})
                         <form asp-controller="Signing" asp-action="SignIn" method="post">
                             
-                            <div class="m-2 p-2 mx-5">
+                            <div class="mt-2  mx-4">
                                 <div class="form-floating">
                                     <input type="text" asp-for=UserName class="form-control"
                                         placeholder="Enter Your UserID" id="username" />
@@ -61,7 +49,7 @@
                                     <span class="my-2 text-danger" asp-validation-for=UserName></span>
                                 </div>
                             </div>
-                            <div class="m-2 p-2 mx-5">
+                            <div class="mt-2  mx-4">
                                 <div class="form-floating mb-3">
                                     <input type="password" class="form-control" placeholder="Enter Your Password"
                                         asp-for=Password id="password" />
@@ -101,6 +89,20 @@
 <script src="//cdn.datatables.net/2.3.1/js/dataTables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
 
+<script>
+VANTA.NET({
+  el: "#background_div",
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: true,
+  minHeight: 400.00,
+  minWidth: 400.00,
+  scale: 0.50,
+  scaleMobile: 1.00,
+  color: 0xda4ae,
+  backgroundColor: 0x15193c
+})
+</script>
 
 
 </html>

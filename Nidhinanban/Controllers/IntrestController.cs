@@ -15,8 +15,11 @@ namespace Nidhinanban.Controllers
     public class IntrestController : Controller
     {
         private readonly InterestService _interestService;
-        public IntrestController(){
+
+        public IntrestController()
+        {
             _interestService = new InterestService();
+            //_saveIntoInterestTableservice = SaveIntoInterestTableservice;
         }
         [HttpGet]
         public IActionResult Intrestcalc()
@@ -69,6 +72,18 @@ namespace Nidhinanban.Controllers
             var fileBytes = Exporter.ExportInterestViewExcel(interestamount!,principleamount!,totalamount!,dataTable!);
             string filename="Interest Report "+DateTime.Now.ToString("");
             return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", filename);
+        }
+
+        public IActionResult SaveToDatabase()
+        {
+            string? json = TempData["ScheduleData"]?.ToString();
+            string? interestamount = TempData["IntrestAmount"]?.ToString();
+            string? principleamount = TempData["Principleamount"]?.ToString();
+            string? totalamount = TempData["TotalAmount"]?.ToString();
+            string result = String.IsNullOrEmpty(json) ? "" : json;
+            var dataTable = JsonConvert.DeserializeObject<DataTable>(result);
+            return Ok();
+               
         }
     }
 }

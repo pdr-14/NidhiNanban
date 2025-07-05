@@ -12,48 +12,49 @@ namespace Nidhinanban.Services
         private readonly IConfiguration _configuration;
         private ImageManipulation _imageManipulation;
         public static string? connectionstring { get; set; }
-        public AddCustomerService(IConfiguration Configuration,ImageManipulation imageManipulation)
+        public AddCustomerService(IConfiguration Configuration, ImageManipulation imageManipulation)
         {
             _configuration = Configuration;
             _imageManipulation = imageManipulation;
             connectionstring = _configuration.GetConnectionString("DefaultConnection");
-            
+
         }
-         
-       
-        MySqlConnection con = new MySqlConnection(connectionstring);
-        
-        MySqlCommand commandstring = new MySqlCommand();
-        public async Task<string> AddCustomer(string CustomerId,string customerName, string CustomerPhonenumber, string CustomerAddress, IFormFile CustomerProfileimage, IFormFile CustomerAadharimage, IFormFile CusomerPancardimage, IFormFile CustomerHouseimage)
+
+
+
+        public async Task<string> AddCustomer(string CustomerId, string customerName, string CustomerPhonenumber, string CustomerAddress, IFormFile CustomerProfileimage, IFormFile CustomerAadharimage, IFormFile CusomerPancardimage, IFormFile CustomerHouseimage)
         {
-            
+            MySqlConnection con = new MySqlConnection(connectionstring);
+
+            MySqlCommand commandstring = new MySqlCommand();
+
             string result = "";
             try
             {
-            
-                await  _imageManipulation.StoreImageToTheServer(CustomerId, CustomerProfileimage,"Profile");
-                await _imageManipulation.StoreImageToTheServer(CustomerId,CustomerHouseimage,"House");
+
+                await _imageManipulation.StoreImageToTheServer(CustomerId, CustomerProfileimage, "Profile");
+                await _imageManipulation.StoreImageToTheServer(CustomerId, CustomerHouseimage, "House");
                 await _imageManipulation.StoreImageToTheServer(CustomerId, CustomerAadharimage, "Aadhaar");
-                await _imageManipulation.StoreImageToTheServer(CustomerId, CusomerPancardimage,"PanCard");
+                await _imageManipulation.StoreImageToTheServer(CustomerId, CusomerPancardimage, "PanCard");
                 await con.OpenAsync();
                 commandstring.Connection = con;
                 commandstring.CommandText = "INSERT INTO CUSTOMER VALUE(@customerid,@customername,@customerphonenumber,@customeraddress)";
-                commandstring.Parameters.AddWithValue("@customername",customerName);
-                commandstring.Parameters.AddWithValue("@customerphonenumber",CustomerPhonenumber);
-                commandstring.Parameters.AddWithValue("@customeraddress",CustomerAddress);
+                commandstring.Parameters.AddWithValue("@customername", customerName);
+                commandstring.Parameters.AddWithValue("@customerphonenumber", CustomerPhonenumber);
+                commandstring.Parameters.AddWithValue("@customeraddress", CustomerAddress);
                 commandstring.Parameters.AddWithValue("@customerid", CustomerId);
-                int rowcount=await commandstring.ExecuteNonQueryAsync();
-                if(rowcount==0)
+                int rowcount = await commandstring.ExecuteNonQueryAsync();
+                if (rowcount == 0)
                 {
-                    return result="Error Code x0ENNRA"; //Error code "Error No New Row Added" => ENNRA (Expansion)
+                    return result = "Error Code x0ENNRA"; //Error code "Error No New Row Added" => ENNRA (Expansion)
                 }
-                else if(rowcount>0)
+                else if (rowcount > 0)
                 {
-                    return result="Inserted";
+                    return result = "Inserted";
                 }
                 else
                 {
-                    return result="Error Code xoUE"; //Error code "Unkown Error" => UE;
+                    return result = "Error Code xoUE"; //Error code "Unkown Error" => UE;
                 }
             }
             catch (Exception ex)
@@ -70,13 +71,15 @@ namespace Nidhinanban.Services
 
         public async Task<string> GetCustomerID()
         {
+            MySqlConnection con = new MySqlConnection(connectionstring);
+
+            MySqlCommand commandstring = new MySqlCommand();
             string returnid = "";
             try
             {
-                await con.CloseAsync();
                 await con.OpenAsync();
                 commandstring.Connection = con;
-                commandstring.CommandText = "select customerid from CUSTOMER";
+                commandstring.CommandText = "select customerid from CUSTOMER order by customerid desc limit 1";
                 MySqlDataReader dr = await commandstring.ExecuteReaderAsync();
                 if (dr.HasRows)
                 {
@@ -94,7 +97,8 @@ namespace Nidhinanban.Services
                     }
                     else
                     {
-                        returnid = extractedid + (numberid + 1).ToString();    
+
+                        returnid = extractedid + (numberid + 1).ToString();
                     }
                 }
                 else
@@ -110,11 +114,13 @@ namespace Nidhinanban.Services
             {
                 await con.CloseAsync();
             }
-            Console.WriteLine(returnid);
             return returnid;
         }
         public async Task<string> AddCustomer()
         {
+            MySqlConnection con = new MySqlConnection(connectionstring);
+
+            MySqlCommand commandstring = new MySqlCommand();
             string result = string.Empty;
             try
             {

@@ -2,11 +2,26 @@
 @{
     ViewData["Title"] = "CustomerDetails";
 }
+<style>
+ .editcontainer{
+    margin-left:10%;
+ }
+ .editcontainer:hover{
+    display:"block";
+    
+ }
+</style>
 <div>
-    <a class="btn btn-outline-light text-black border rounded-circle " asp-controller="Customer" asp-action="ViewCustomer">
+    <button class="btn btn-outline-light text-black border rounded-circle " onclick="back()" >
         <img width="25" height="30"  src="https://img.icons8.com/plumpy/50/back.png" alt="back"/>
-    </a>
-
+    </button>
+    <div class="d-flex float-end flex-row-reverse editcontainer"><img src="https://img.icons8.com/plumpy/50/back.png" alt="edit"/>
+    <div class="d-flex justify-content-evenly editcontainer">
+    <div style="display: none;" class="editcontainer">
+    <img src="https://img.icons8.com/plumpy/50/back.png" alt="view"/> <img src="https://img.icons8.com/plumpy/50/back.png" alt="delete"/>
+    </div>
+    </div>
+    </div>
     <div class="modal" id="Profilemodal">
         <div class="modal-dailog">
             <div class="model-content">
@@ -57,7 +72,7 @@
                 <hr />
                 <div class="d-flex justify-content-center">
                     <img class="img-fluid" style="height:200px; max-height: 200px; object-fit: fit;"
-                        src="/getimg/GetImageProxy/@Model[0].customerid/house" data-bs-toogle="Profilemodal" />
+                        src="/getimg/GetImageProxy/@Model[0].customerid/house" data-bs-toogle="modal" data-bs-target="#Profilemodal" />
                 </div>
             </div>
 
@@ -97,3 +112,20 @@
 
 </div>
 </div>
+<script>
+    function back()
+    {
+        let type=sessionStorage.getItem("ViewType");
+        if(type=="List")
+        {
+            window.location.href="/Customer/ViewCustomerlist";
+        }
+        else if(type=="Gird")
+        {
+            window.location.href="/Customer/ViewCustomer";
+        }
+        else{
+            window.location.href="/Customer/ViewCustomer";
+        }
+    }
+</script>

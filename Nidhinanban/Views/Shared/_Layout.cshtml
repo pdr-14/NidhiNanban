@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Nidhinanban</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Nidhinanban.styles.css" asp-append-version="true" />
@@ -19,8 +20,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-
-    @* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"> *@
+@* 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">  *@
     <style>
         body {
     font-family: "Poppins", sans-serif;
@@ -29,36 +30,125 @@
     background-image: url("../img/bg.png");
     background-repeat: no-repeat;
     background-size: cover;         
-    background-position: center;    
+    background-position: center;  
+     overflow: visible;  
+    }
+    
+.dropdown {
+    position: relative;
+    z-index: 1065; 
+    overflow: visible;/* higher than cards (1) and default dropdowns (1050) */
+     backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
 }
+.dropdown-menu {
+    position: absolute;
+    z-index: 1080; /* higher than .dropdown and .card */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    overflow: visible;
+}
+
+
+.card {
+    z-index: 1; /* default z-index for cards */
+  overflow: visible;
+}
+
+
+.container {
+    overflow: visible;
+}
+
 
     </style>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3 ms-auto ">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 ms-auto ml-auto ">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img width="80" height="80" src="../img/NIDHI.png"/> Nidhinanban</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav  flex-grow-1 justify-content-end">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <ul class="navbar-nav z-index-3">
+                        @* Home *@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        @* Interest Calculator *@
+                        <li class="nav-item dropdown">
+                             <p class="nav-link text-dark" role="button" data-bs-toggle="dropdown"> Interest </p>
+                             <ul class="dropdown-menu bg-light bg-opacity-75 dropdown-menu-sm-start dropdown-menu-lg-end shadow shadow-lg">
+                                <li>
+                                    <h6 class="dropdown-header">Calculator Section</h6>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" asp-controller="Intrest" asp-action="Intrestcalc"> <img width="20" height="20" src="https://img.icons8.com/ios/50/calculator--v1.png" alt="calculator--v1"/>   Calculator</a>
+                                <li><a class="dropdown-item" href="#"><img width="20" height="20" src="https://img.icons8.com/ios/50/salary-male.png" alt="salary-male"/> Pay </a></li>
+                              </ul>
+                        </li>
+                        @* Customer Details *@
+                        <li class="nav-item dropdown">
+                                <p class="nav-link text-dark" role="button" data-bs-toggle="dropdown">
+                                Customers
+                            </p>
+
+                            <ul class="dropdown-menu bg-light bg-opacity-75 dropdown-menu-sm-start dropdown-menu-lg-end  shadow shadow-lg">
+                                <li>
+                                    <h6 class="dropdown-header">Add Section</h6>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" asp-controller="Customer" asp-action="AddCustomer"><img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/add-user-male.png" alt="add-user-male"/>
+                                 Add Customers</a></li>
+
+                                <li>
+                                    <h6 class="dropdown-header">View Section</h6>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" asp-controller="Customer" asp-action="ViewCustomer"><img width="20" height="20" src="https://img.icons8.com/fluency-systems-filled/48/bank-card-back-side.png" alt="bank-card-back-side"/> View
+                                        Customers Grid</a></li>
+                                <li><a class="dropdown-item" asp-controller="Customer"
+                                        asp-action="ViewCustomerList"><img width="20" height="20" src="https://img.icons8.com/ios-filled/50/table-1.png" alt="table-1"/>  View Customers List</a></li>
+                            </ul>
+                            
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home"
                                 asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Intrest"
-                                asp-action="Intrestcalc">Interest</a>
-                        </li>
+                       
+                        
+                        <li class="nav-link dropdown shadow-lg" >
+                            <img width="50" height="50"  src="https://img.icons8.com/color/96/test-account.png" alt="test-account" data-bs-toggle="dropdown" />
+                            <ul class="dropdown-menu bg-white  bg-opacity-50 dropdown-menu-lg-end w-100 blur box-shadow shadow">
+                                    <h5 class=" text-dark text-center m-3">Hi @LoggedInUserModel.UserName!</h5>
+                                    
+                                    <div>
+                                        <a  href="#" class="mx-3 text-decoration-none text-dark"><img width="20" height="20" src="https://img.icons8.com/fluency-systems-filled/48/about-me.png" alt="about-me"/>   View Profile</a>
+                                        <a class="mx-3" href="#"><img width="20" height="20" src="https://img.icons8.com/fluency-systems-filled/48/synchronize.png" alt="synchronize"/> SignIn Activities</a>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                    <div class="d-flex justify-content-center mx-auto">
+                                        <button class="btn btn-danger w-75">Log-out</button>
+                                    </div>
+                            </ul>   
+                             
+                        </li> 
                     </ul>
+                
                 </div>
+                
             </div>
         </nav>
     </header>
@@ -74,7 +164,7 @@
         </div>
     </footer>
     @section Scripts {
-        <partial name="_ValidationScriptsPartial" />
+        <partial name="_ValidationScriptsPartial"/>
     }
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -84,7 +174,6 @@
     <script src="https://unpkg.com/htmx.org@1.9.2"></script>
     <script src="//cdn.datatables.net/2.3.1/js/dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
-
     @await RenderSectionAsync("Scripts", required: false)
     
 

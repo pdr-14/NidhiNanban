@@ -7,10 +7,12 @@ using Nidhinanban.Services;
 using System.Data;
 using DocumentFormat.OpenXml.Drawing.Charts;
 using Microsoft.AspNetCore.Authorization;
+using DocumentFormat.OpenXml.Office2010.PowerPoint;
+using Org.BouncyCastle.Asn1.Cms;
 
 namespace Nidhinanban.Api.Controllers
 {
-    
+
     [ApiController]
     [Route("View/[controller]")]
     public class ViewCustomerController : ControllerBase
@@ -21,17 +23,20 @@ namespace Nidhinanban.Api.Controllers
         {
             _customerService = customer;
         }
-        [HttpGet("getall")]
+        [HttpGet("getall/{pagenumber}")]
         [Authorize]
-        public async Task<ActionResult<List<ViewCustomer>>> GetAll()
+        [ResponseCache(Duration =600,NoStore =false,VaryByQueryKeys =new[]{"pagenumber"})]        // VaryByHeader is used to vary the cache based on the User-Agent header,
+        public async Task<ActionResult<List<ViewCustomer>>> GetAll(int pagenumber)
         {
             try
             {
-                var n = await _customerService.getallcustomer();
+                int PageNumber = pagenumber * 12;
+                var n = await _customerService.getallcustomer(pagenumber);
                 if (n.Count == 0)
                 {
                     return BadRequest("No customers found");
                 }
+
                 return Ok(n);
             }
             catch (Exception ex)
@@ -48,8 +53,15 @@ namespace Nidhinanban.Api.Controllers
             {
                 return BadRequest("No Customer Found");
             }
-
             return Ok(details);
+        }
+
+        [HttpGet("getcount")]
+        [Authorize]
+        public async Task<ActionResult> getcount()
+        {
+            var count = await _customerService.Totalcount();
+            return Ok(count);
         }
        
     }

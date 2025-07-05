@@ -1,5 +1,6 @@
 using System.Data;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Nidhinanban.Models;
 
@@ -20,4 +21,21 @@ public class InterestModel{
     public string type{get; set;}=string.Empty;
     public DataTable dt=new DataTable();
 
+}
+public class TestApiModel
+{
+    public float principalAmount { get; set; }
+    public float interestRate { get; set; }
+    public float tenure { get; set; }
+    public string type { get; set; } = string.Empty;
+}
+
+public class InterestTableAPIModel
+{
+    public int sno { get; set; }
+    public string date { get; set; } = string.Empty;
+    public float interestrate { get; set; }
+    public float interestamount { get; set; }
+    public float principalAmount { get; set; }
+    public float totalAmount{ get; set; }
 }
