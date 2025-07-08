@@ -8,7 +8,7 @@ using System.Drawing.Imaging;
 using QRCoder.Core;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Nidhinanban.Controllers;
+namespace Nidhinanban.Api.Controllers;
 
 [ApiController]
 [Route("Generate")]

@@ -289,6 +289,10 @@
       "PackagePath": "staticwebassets\\report.html"
     },
     {
+      "Id": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\report_css2.html",
+      "PackagePath": "staticwebassets\\report_css2.html"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Nidhinanban.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

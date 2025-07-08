@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3XXrei9IWwaCB/1MtHZksgCl5aznSL78tOt1sQVjZPI=",
+  "Hash": "9V+Pjue0PF1hKowiZ2EaROWyQYU0Ybe1SUZHNi2bnEg=",
   "Source": "Nidhinanban",
   "BasePath": "_content/Nidhinanban",
   "Mode": "Default",
@@ -1383,6 +1383,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\report_css2.html",
+      "SourceId": "Nidhinanban",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\",
+      "BasePath": "_content/Nidhinanban",
+      "RelativePath": "report_css2.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\report_css2.html"
     },
     {
       "Identity": "C:\\Users\\ngoku\\OneDrive\\Desktop\\Nidhi Nanban\\Nidhinanban\\wwwroot\\report.html",

@@ -9,6 +9,7 @@ using DocumentFormat.OpenXml.Drawing.Charts;
 using Microsoft.AspNetCore.Authorization;
 using DocumentFormat.OpenXml.Office2010.PowerPoint;
 using Org.BouncyCastle.Asn1.Cms;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Nidhinanban.Api.Controllers
 {
@@ -48,10 +49,24 @@ namespace Nidhinanban.Api.Controllers
         [Authorize]
         public async Task<ActionResult> GetCustomerByID(string id)
         {
+            MemoryCache cache = new MemoryCache(new MemoryCacheOptions());
+            if (cache.TryGetValue(id, out List<ViewCustomer> cachedCustomer))
+            {
+                return Ok(cachedCustomer);
+            }
             var details = await _customerService.getCustomerById(id);
             if (details.Count == 0)
             {
                 return BadRequest("No Customer Found");
+            }
+            else
+            {
+                // Set cache options
+                var cacheEntryOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromMinutes(10)); // Cache for 10 minutes
+
+                // Save data in cache
+                cache.Set(id, details, cacheEntryOptions);
             }
             return Ok(details);
         }

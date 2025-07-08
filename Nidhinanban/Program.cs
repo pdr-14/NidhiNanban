@@ -10,6 +10,8 @@ using System.Text;
 using Microsoft.AspNetCore.ResponseCompression;
 using System.IO.Compression;
 using Microsoft.AspNetCore.Builder;
+using QuestPDF.Infrastructure;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +34,7 @@ builder.Services.AddSingleton<ImageManipulation>();
 builder.Services.AddScoped<AddCustomerService>();
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddHttpClient();
+QuestPDF.Settings.License = LicenseType.Community;
 #endregion
 
 #region  Hosting Region
